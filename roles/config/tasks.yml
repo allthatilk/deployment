@@ -1,4 +1,0 @@
----
-# ping the sever
-- name: ping pong
-  ping:
