@@ -1,0 +1,9 @@
+---
+- name: Set authorized keys from file
+  authorized_key:
+    exclusive: True
+    key: "{{ lookup('file', item) }}"
+    state: present
+    user: root
+  with_items:
+    - authorized_keys.pub

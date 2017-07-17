@@ -1,0 +1,5 @@
+#
+# Ansible .gitignore - 2017-06-12
+# https://github.com/github/gitignore/blob/master/Global/Ansible.gitignore
+#
+*.retry

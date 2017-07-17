@@ -34,3 +34,9 @@ Use the `-k` flag to prompt for an SSH password. This will typically be required
 ansible-playbook path/to/playbook.yml -i inventory.ini -u root -k
 ```
 
+#### Want to add a SSH key?
+
+```
+ansible-playbook configure.yml -i servers.ini
+```
+
