@@ -1,0 +1,30 @@
+---
+- hosts: datastore-dev
+  remote_user: root
+
+  tasks:
+  - name: Create a datastore user
+    user:
+      name: datastore
+      comment: "Datastore Account"
+      createhome: yes
+
+  - name: Install Datastore dependencies
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+       - git
+       - postgresql
+       - redis-server
+       - python-pip
+       - libpq-dev
+       - libxml2-dev
+       - libxslt-dev
+       - python-dev
+
+  - name: Clone the repository
+    git:
+      repo: https://github.com/IATI/IATI-Datastore.git
+      dest: /home/datastore/IATI-Datastore
+      update: yes
