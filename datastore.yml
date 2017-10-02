@@ -28,3 +28,19 @@
       repo: https://github.com/IATI/IATI-Datastore.git
       dest: /home/datastore/IATI-Datastore
       update: yes
+
+  - name: Install requirements via pip
+    pip:
+      chdir: /home/datastore/IATI-Datastore
+      requirements: requirements.txt
+
+  - name: Create postgres database 'iati_datastore'
+    become: true
+    become_user: postgres
+    postgresql_db:
+      name: iati_datastore
+
+  - name: Set environment variable to link to the postgres database
+    lineinfile:
+      dest: /etc/environment
+      line: "export DATABASE_URL='postgres:///iati-datastore'"
