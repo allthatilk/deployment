@@ -49,3 +49,7 @@
   - name: Reload bash profile for environment variable to take effect
     command: source /etc/environment
 
+  - name: Create the iati-datastore tables
+    command: iati create_database
+
+
