@@ -45,3 +45,7 @@
     lineinfile:
       dest: /etc/environment
       line: "export DATABASE_URL='postgres:///iati-datastore'"
+
+  - name: Reload bash profile for environment variable to take effect
+    command: source /etc/environment
+
