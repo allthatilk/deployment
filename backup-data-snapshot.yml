@@ -1,0 +1,6 @@
+---
+- hosts: backup-data-snapshot
+  remote_user: root
+  roles:
+     - config
+     - backup-data-snapshot

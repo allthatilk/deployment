@@ -40,3 +40,11 @@ ansible-playbook path/to/playbook.yml -i inventory.ini -u root -k
 ansible-playbook configure.yml -i servers.ini
 ```
 
+## Data Snapshot Backup Server
+
+To set up a server to back up the Data Snapshot used by the Dashboard.
+
+```
+# create a `servers-dev.ini` file detailing the required servers
+ansible-playbook backup-data-snapshot.yml -i servers-dev.ini
+```
