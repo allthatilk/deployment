@@ -1,8 +1,13 @@
 ---
 - hosts: datastore-dev
   remote_user: root
+  gather_facts: false
 
   tasks:
+
+  - name: install python 2
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
   - name: Create a datastore user
     user:
       name: datastore
@@ -13,6 +18,7 @@
     apt:
       name: "{{ item }}"
       state: present
+      update_cache: yes
     with_items:
        - git
        - postgresql
@@ -44,12 +50,16 @@
   - name: Set environment variable to link to the postgres database
     lineinfile:
       dest: /etc/environment
-      line: "export DATABASE_URL='postgres:///iati-datastore'"
+      line: "export DATABASE_URL=postgres:///iati_datastore"
 
-  - name: Reload bash profile for environment variable to take effect
-    command: source /etc/environment
+  - name: Create postgres role for root user
+    postgresql_user:
+      db: iati_datastore
+      name: root
+    become: true
+    become_user: postgres
 
   - name: Create the iati-datastore tables
     command: iati create_database
-
-
+    environment:
+      DATABASE_URL: postgres:///iati_datastore
