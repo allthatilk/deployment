@@ -1,0 +1,15 @@
+---
+
+# install dependencies
+- name: Install `git`
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+# create non-root user
+- name: Create a non-root user
+  user:
+    name: backup-data-snapshot
+    comment: "Account to own the backup of the Data Snapshot"
+    createhome: yes

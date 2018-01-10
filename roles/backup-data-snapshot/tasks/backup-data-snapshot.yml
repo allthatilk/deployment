@@ -1,3 +1,9 @@
 ---
-- debug:
-    msg: "hello world"
+
+# clone git repository
+- name: clone git repository containing the Data Snapshot
+  git:
+    repo: git://dashboard.iatistandard.org/IATI-Data-Snapshot.git
+    dest: /home/backup-data-snapshot/iati-data-snapshot
+    update: yes
+    version: automatic
