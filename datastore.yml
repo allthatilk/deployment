@@ -3,6 +3,10 @@
   remote_user: root
   gather_facts: false
 
+  environment:
+    DATABASE_URL: postgres:///iati_datastore
+
+
   tasks:
 
   - name: install python 2
@@ -61,5 +65,6 @@
 
   - name: Create the iati-datastore tables
     command: iati create_database
-    environment:
-      DATABASE_URL: postgres:///iati_datastore
+
+  - name: Start crawler to get source data
+    command: iati crawl update
