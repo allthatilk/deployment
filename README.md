@@ -44,6 +44,8 @@ ansible-playbook configure.yml -i servers.ini
 
 To set up a server to back up the Data Snapshot used by the Dashboard.
 
+**TODO:** Fix TODO in `roles/backup-data-snapshot/tasks/backup-data-snapshot.yml`
+
 ```
 # create a `servers-dev.ini` file detailing the required servers
 ansible-playbook backup-data-snapshot.yml -i servers-dev.ini

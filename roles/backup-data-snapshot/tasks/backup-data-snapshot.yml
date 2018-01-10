@@ -1,9 +1,10 @@
 ---
 
 # clone git repository
+# TODO: switch to use actual repo (NOTE: this takes a while)
 - name: clone git repository containing the Data Snapshot
   git:
-    repo: git://dashboard.iatistandard.org/IATI-Data-Snapshot.git
-    dest: /home/backup-data-snapshot/iati-data-snapshot
+    repo: https://github.com/IATI/deployment.git
+    dest: /home/backup-data-snapshot/small-repo
     update: yes
-    version: automatic
+    version: master
