@@ -1,0 +1,26 @@
+---
+- hosts: validator-dev-ansible
+  remote_user: root
+  gather_facts: false
+
+  tasks:
+
+  - name: install python 2
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+  - name: Install Validator dependencies
+    apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    with_items:
+       - git
+       - apache2
+       - php
+       - libapache2-mod-php
+
+  - name: Clone the validator git repo
+    git:
+      repo: https://github.com/IATI/IATI-Public-Validator.git
+      dest: /var/www/html/IATI-Public-Validator
+      update: yes
