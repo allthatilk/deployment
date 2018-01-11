@@ -1,0 +1,7 @@
+---
+
+- hosts: data-snapshot
+  remote_user: root
+  roles:
+     - config
+     - data-snapshot
