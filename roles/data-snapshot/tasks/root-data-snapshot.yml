@@ -1,0 +1,38 @@
+---
+
+- name: Install setup dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - git
+
+- name: Install Registry Refresher apt dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - curl
+    - php5-curl
+    - php5-cli
+    - wget
+
+# Install `gist` script for Registry Refresher
+# - name: Install `gist` apt dependencies
+#   apt:
+#     name: "{{ item }}"
+#     state: present
+#     update_cache: yes
+#   with_items:
+#     - ruby1.9.1
+#     - rubygems
+
+# - name: Install `gist` gem dependencies
+#   gem:
+#     name: "{{ item }}"
+#     state: present
+#   with_items:
+#     - gist
+#     - optparse
