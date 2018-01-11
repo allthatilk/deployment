@@ -1,0 +1,14 @@
+---
+
+# install dependencies
+- name: Install `git`
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+- name: Create a user to host a git server
+  user:
+    name: "{{ git_user_account_name }}"
+    shell: /usr/bin/git-shell
+    home: /srv/git

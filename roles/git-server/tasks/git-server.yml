@@ -1,0 +1,6 @@
+---
+
+- name: Ensure the directory to clone data into exists
+  file:
+    path: "{{ git_server_directory }}"
+    state: directory

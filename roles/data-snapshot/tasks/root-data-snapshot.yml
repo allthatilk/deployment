@@ -1,44 +1,8 @@
 ---
 
-- name: Install setup dependencies
-  apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - git
-
-- name: Install Registry Refresher apt dependencies
-  apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - curl
-    - php7.0-curl
-    - php7.0-cli
-    - wget
-
-# Install `gist` script for Registry Refresher
-# - name: Install `gist` apt dependencies
-#   apt:
-#     name: "{{ item }}"
-#     state: present
-#     update_cache: yes
-#   with_items:
-#     - ruby1.9.1
-#     - rubygems
-
-# - name: Install `gist` gem dependencies
-#   gem:
-#     name: "{{ item }}"
-#     state: present
-#   with_items:
-#     - gist
-#     - optparse
-
-- name: Create a non-root user - Registry Refresher
+# create non-root user
+- name: Create a non-root user
   user:
-    name: registry-refresher
-    comment: "Account to manage the Registry Refresher"
+    name: backup-data-snapshot
+    comment: "Account to own the backup of the Data Snapshot"
     createhome: yes

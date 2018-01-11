@@ -1,6 +1,4 @@
 ---
 
-data_snapshot_git_repo_folder_name: data-snapshot.git
-data_snapshot_git_repo_url: git://dashboard.iatistandard.org/IATI-Data-Snapshot.git
-
-git_server_directory: /srv/git
+data_snapshot_clone_flags: "--mirror"
+data_snapshot_git_repo_url: https://github.com/IATI/iati.fetch.git

@@ -1,0 +1,5 @@
+---
+
+git_server_directory: /srv/git
+
+git_user_account_name: git

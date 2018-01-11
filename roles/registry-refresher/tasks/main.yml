@@ -1,0 +1,13 @@
+---
+# as a base, the Registry Refresher has a Data Snapshot on the server
+- include_role:
+    name: data-snapshot
+    allow_duplicates: no
+
+# tasks to complete as root
+- include_tasks: root-registry-refresher.yml
+
+# tasks to complete as not-root
+- include_tasks: registry-refresher.yml
+  become: true
+  become_user: registry-refresher

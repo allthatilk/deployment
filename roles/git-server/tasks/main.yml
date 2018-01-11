@@ -1,0 +1,8 @@
+---
+# tasks to complete as root
+- include_tasks: root-git-server.yml
+
+# tasks to complete as not-root
+- include_tasks: git-server.yml
+  become: true
+  become_user: "{{ git_user_account_name }}"
