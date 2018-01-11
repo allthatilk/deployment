@@ -15,4 +15,4 @@
   command: git remote remove origin
   args:
     chdir: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}"
-  when: data_snapshot_remove_remotes
+  when: "'--bare' in data_snapshot_clone_flags"
