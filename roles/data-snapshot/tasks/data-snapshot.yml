@@ -10,3 +10,9 @@
   command: git fetch --all
   args:
     chdir: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}"
+
+- name: Remove the remote from the Data Snapshot
+  command: git remote remove origin
+  args:
+    chdir: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}"
+  when: data_snapshot_remove_remotes
