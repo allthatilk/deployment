@@ -1,0 +1,19 @@
+---
+# configure the Registry Refresher
+
+# obtain required files
+- name: Clone Registry Refresher git repository
+  git:
+    repo: https://github.com/IATI/IATI-Registry-Refresher.git
+    dest: "{{ registry_refresher_directory }}"
+    update: yes
+    version: live
+
+- name: Ensure folders for data to live in exist
+  file:
+    path: "{{ registry_refresher_directory }}/{{ item }}"
+    state: directory
+  with_items:
+    - ckan
+    - data
+    - urls

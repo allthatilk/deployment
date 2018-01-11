@@ -15,8 +15,8 @@
     update_cache: yes
   with_items:
     - curl
-    - php5-curl
-    - php5-cli
+    - php7.0-curl
+    - php7.0-cli
     - wget
 
 # Install `gist` script for Registry Refresher
@@ -36,3 +36,9 @@
 #   with_items:
 #     - gist
 #     - optparse
+
+- name: Create a non-root user - Registry Refresher
+  user:
+    name: registry-refresher
+    comment: "Account to manage the Registry Refresher"
+    createhome: yes
