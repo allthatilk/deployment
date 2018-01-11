@@ -13,3 +13,9 @@
     name: backup-data-snapshot
     comment: "Account to own the backup of the Data Snapshot"
     createhome: yes
+
+- name: Create a git user to host a git server
+  user:
+    name: git
+    shell: /usr/bin/git-shell
+    home: /srv/git

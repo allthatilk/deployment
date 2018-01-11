@@ -5,4 +5,4 @@
 # tasks to complete as not-root
 - include_tasks: backup-data-snapshot.yml
   become: true
-  become_user: backup-data-snapshot
+  become_user: git

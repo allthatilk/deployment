@@ -1,10 +1,17 @@
 ---
 
-# clone git repository
-# TODO: switch to use actual repo (NOTE: this takes a while)
-- name: clone git repository containing the Data Snapshot
-  git:
-    repo: https://github.com/IATI/deployment.git
-    dest: /home/backup-data-snapshot/small-repo
-    update: yes
-    version: master
+- name: Ensure the directory to clone data into exists
+  file:
+    path: "{{ git_server_directory }}"
+    state: directory
+
+- name: Mirror the Data Snapshot
+  command: "git clone --mirror {{ data_snapshot_git_repo_url }} {{ data_snapshot_git_repo_folder_name }}/"
+  args:
+    chdir: "{{ git_server_directory }}"
+    creates: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}/"
+
+- name: Fetch the contents of the Data Snapshot
+  command: git fetch --all
+  args:
+    chdir: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}"

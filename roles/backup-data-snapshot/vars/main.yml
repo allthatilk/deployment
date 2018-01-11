@@ -1,0 +1,6 @@
+---
+
+data_snapshot_git_repo_folder_name: myrepo11.git
+data_snapshot_git_repo_url: https://github.com/IATI/deployment.git
+
+git_server_directory: /srv/git
