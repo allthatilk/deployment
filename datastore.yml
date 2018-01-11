@@ -33,6 +33,13 @@
        - libxslt-dev
        - python-dev
        - libevent-dev
+       - apache2
+       - libapache2-mod-wsgi
+
+  - name: Enable mod_rewrite
+    apache2_module:
+      name: rewrite
+      state: present
 
   - name: Clone the repository
     git:
@@ -68,3 +75,14 @@
 
   - name: Start crawler to get source data
     command: iati crawl update
+
+  - cron:
+      name: "Start worker to download and index datafiles"
+      special_time: reboot
+      job: "sleep 10m; iati queue background"
+
+  - cron:
+      name: "Update source data with crawler"
+      minute: "30"
+      hour: "0-23/5"
+      job: "iati crawl update"
