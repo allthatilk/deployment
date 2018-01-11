@@ -6,6 +6,8 @@ A repository for managing deployment processes. Single-purpose successor to http
 
 Based on guide at http://ryaneschinger.com/blog/ansible-quick-start/
 
+The file structure should follow the Best Practice Directory Layout http://docs.ansible.com/ansible/latest/playbooks_best_practices.html#directory-layout
+
 ### Set-up
 
 Ansible uses an inventory file to determine what hosts to work against. This file is stored by default at '/etc/ansible/hosts', although a bespoke path can be set using an option `–inventory=/path/to/inventory/file`.
@@ -43,6 +45,8 @@ ansible-playbook configure.yml -i servers.ini
 ## Data Snapshot Backup Server
 
 To set up a server to back up the Data Snapshot used by the Dashboard.
+
+**TODO:** Fix TODO in `roles/backup-data-snapshot/tasks/backup-data-snapshot.yml`
 
 ```
 # create a `servers-dev.ini` file detailing the required servers

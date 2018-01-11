@@ -1,3 +1,17 @@
 ---
-- debug:
-    msg: "hello world"
+
+- name: Ensure the directory to clone data into exists
+  file:
+    path: "{{ git_server_directory }}"
+    state: directory
+
+- name: Mirror the Data Snapshot
+  command: "git clone --mirror {{ data_snapshot_git_repo_url }} {{ data_snapshot_git_repo_folder_name }}/"
+  args:
+    chdir: "{{ git_server_directory }}"
+    creates: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}/"
+
+- name: Fetch the contents of the Data Snapshot
+  command: git fetch --all
+  args:
+    chdir: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}"

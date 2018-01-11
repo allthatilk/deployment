@@ -1,2 +1,8 @@
 ---
-- include: backup-data-snapshot.yml
+# tasks to complete as root
+- include_tasks: root-backup-data-snapshot.yml
+
+# tasks to complete as not-root
+- include_tasks: backup-data-snapshot.yml
+  become: true
+  become_user: git
