@@ -36,10 +36,16 @@
        - apache2
        - libapache2-mod-wsgi
 
+  - name: Enable mod_headers
+    apache2_module:
+      name: headers
+      state: present
+
   - name: Enable mod_rewrite
     apache2_module:
       name: rewrite
       state: present
+
 
   - name: Clone the repository
     git:
@@ -86,3 +92,47 @@
       minute: "30"
       hour: "0-23/5"
       job: "iati crawl update"
+
+  - name: Copy apache2 config file to sites-available
+    copy:
+      remote_src: No
+      src: apache2.conf
+      dest: /etc/apache2/sites-available/000-default.conf
+      owner: root
+      group: root
+      mode: 0644
+    notify: restart apache
+
+  - name: Enable default site with apache2
+    command: a2ensite 000-default
+    args:
+      creates: /etc/apache2/sites-enabled/000-default.conf
+    notify: restart apache
+
+  - name: Add datastore group
+    group:
+      name: datastore
+      state: present
+
+  - name: Add www-data to datastore group
+    user:
+      name: www-data
+      group: datastore
+
+  - name: Restart server
+    become: yes
+    shell: sleep 2 && reboot
+    async: 1
+    poll: 0
+
+  # - name: Set wait_host to ansible_host
+  #   set_fact: wait_host="{{ ansible_host }}"
+
+  - name: Wait 30 seconds for server to come back
+    local_action: wait_for host={{ inventory_hostname }} port=22 delay=20 connect_timeout=200
+
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted
