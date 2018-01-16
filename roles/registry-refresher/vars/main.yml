@@ -1,7 +1,4 @@
 ---
 
-data_snapshot_clone_flags: "--bare"
-data_snapshot_git_repo_url: https://github.com/IATI/iati.fetch.git
-
 registry_refresher_directory: "/home/{{ registry_refresher_user_account_name }}/registry-refresher"
 registry_refresher_user_account_name: registry-refresher

@@ -1,0 +1,3 @@
+---
+
+registry_refresher_data_directory: "{{ git_server_directory }}/"

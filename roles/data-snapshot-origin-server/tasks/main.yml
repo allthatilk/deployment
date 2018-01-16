@@ -1,0 +1,9 @@
+---
+
+- include_role:
+    name: data-snapshot-server
+    allow_duplicates: no
+
+- include_role:
+    name: registry-refresher
+    allow_duplicates: no

@@ -1,8 +1,0 @@
----
-
-# create non-root user
-- name: Create a non-root user
-  user:
-    name: backup-data-snapshot
-    comment: "Account to own the backup of the Data Snapshot"
-    createhome: yes
