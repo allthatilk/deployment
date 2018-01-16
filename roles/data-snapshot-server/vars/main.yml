@@ -1,0 +1,3 @@
+---
+
+data_snapshot_directory: "{{ git_server_directory }}"

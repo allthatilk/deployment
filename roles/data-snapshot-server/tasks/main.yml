@@ -1,0 +1,9 @@
+---
+
+- include_role:
+    name: git-server
+    allow_duplicates: no
+
+- include_role:
+    name: data-snapshot
+    allow_duplicates: no

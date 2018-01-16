@@ -3,16 +3,16 @@
 - name: Clone the Data Snapshot
   command: "git clone {{ data_snapshot_clone_flags }} {{ data_snapshot_git_repo_url }} {{ data_snapshot_git_repo_folder_name }}/"
   args:
-    chdir: "{{ git_server_directory }}"
-    creates: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}/"
+    chdir: "{{ data_snapshot_directory }}"
+    creates: "{{ data_snapshot_directory }}/{{ data_snapshot_git_repo_folder_name }}/"
 
 - name: Fetch the contents of the Data Snapshot
   command: git fetch --all
   args:
-    chdir: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}"
+    chdir: "{{ data_snapshot_directory }}/{{ data_snapshot_git_repo_folder_name }}"
 
 - name: Remove the remote from the Data Snapshot
   command: git remote remove origin
   args:
-    chdir: "{{ git_server_directory }}/{{ data_snapshot_git_repo_folder_name }}"
+    chdir: "{{ data_snapshot_directory }}/{{ data_snapshot_git_repo_folder_name }}"
   when: "'--bare' in data_snapshot_clone_flags"

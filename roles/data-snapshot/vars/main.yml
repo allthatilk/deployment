@@ -1,4 +1,5 @@
 ---
 
+# data_snapshot_directory: ""  # TODO: determine whether a default Data Snapshot directory location should be specified
 data_snapshot_git_repo_folder_name: data-snapshot.git
 # data_snapshot_git_repo_folder_name: test2.git

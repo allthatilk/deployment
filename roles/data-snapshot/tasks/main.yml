@@ -1,7 +1,4 @@
 ---
-- include_role:
-    name: git-server
-    allow_duplicates: no
 
 # tasks to complete as root
 - include_tasks: root-data-snapshot.yml

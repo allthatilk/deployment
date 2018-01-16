@@ -1,7 +1,7 @@
 ---
 # as a base, the Registry Refresher has a Data Snapshot on the server
 - include_role:
-    name: data-snapshot
+    name: data-snapshot-server
     allow_duplicates: no
 
 # tasks to complete as root
