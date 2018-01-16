@@ -1,0 +1,9 @@
+---
+
+- include_role:
+    name: test-vars-through-me
+    allow_duplicates: no
+
+- include_role:
+    name: test-vars-want-info
+    allow_duplicates: no

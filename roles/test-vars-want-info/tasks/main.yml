@@ -1,0 +1,7 @@
+---
+
+- debug:
+    msg: "{{ test_var }}"
+
+- debug:
+    msg: "{{ test_var_a }}"
