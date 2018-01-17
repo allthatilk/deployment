@@ -3,4 +3,4 @@
   remote_user: root
   roles:
      - config
-     - test-vars-parent
+     - test-vars/test-vars-parent

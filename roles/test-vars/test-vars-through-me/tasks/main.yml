@@ -1,5 +1,5 @@
 ---
 
 - include_role:
-    name: test-vars-have-info
+    name: test-vars/test-vars-have-info
     allow_duplicates: no
