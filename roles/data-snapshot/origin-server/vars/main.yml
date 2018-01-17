@@ -1,6 +1,6 @@
 ---
 
 data_snapshot_clone_flags: "--bare"
-data_snapshot_git_repo_url: git://dashboard.iatistandard.org/IATI-Data-Snapshot.git
+data_snapshot_git_repo_url: git@46.101.30.183:data-snapshot.git
 
 registry_refresher_data_directory: "{{ git_server_directory }}/"
