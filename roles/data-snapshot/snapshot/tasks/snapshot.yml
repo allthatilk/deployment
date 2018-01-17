@@ -11,6 +11,12 @@
   args:
     chdir: "{{ data_snapshot_directory }}/{{ data_snapshot_git_repo_folder_name }}"
 
+# TODO: Extract branch name into variable
+- name: Fetch the contents of the Data Snapshot
+  command: git checkout automatic
+  args:
+    chdir: "{{ data_snapshot_directory }}/{{ data_snapshot_git_repo_folder_name }}"
+
 - name: Remove the remote from the Data Snapshot
   command: git remote remove origin
   args:
