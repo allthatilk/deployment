@@ -1,7 +1,16 @@
 ---
 
 - debug:
-    msg: "{{ test_var }}"
+    msg: "Unchanged: {{ test_var }}"
 
 - debug:
-    msg: "{{ test_var_a }}"
+    msg: "Override at leaf: {{ test_var_override_at_leaf_node }}"
+
+- debug:
+    msg: "Override when passing through: {{ test_var_override_en_route }}"
+
+- debug:
+    msg: "Override at parent: {{ test_var_override_at_parent }}"
+
+- debug:
+    msg: "Override at destination: {{ test_var_override_at_destination }}"

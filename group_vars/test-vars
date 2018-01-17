@@ -1,4 +1,7 @@
 ---
 
-test_var: 42
-test_var_a: "a"
+test_var: "original-value"
+test_var_override_at_leaf_node: "original-value"
+test_var_override_en_route: "original-value"
+test_var_override_at_parent: "original-value"
+test_var_override_at_destination: "original-value"
