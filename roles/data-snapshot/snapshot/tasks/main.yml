@@ -1,6 +1,6 @@
 ---
 
 # tasks to complete as not-root
-- include_tasks: data-snapshot.yml
+- include_tasks: snapshot.yml
   become: true
   become_user: "{{ data_snapshot_user_account_name }}"

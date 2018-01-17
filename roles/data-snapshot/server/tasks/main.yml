@@ -1,9 +1,9 @@
 ---
 
 - include_role:
-    name: data-snapshot-server
+    name: git-server
     allow_duplicates: no
 
 - include_role:
-    name: registry-refresher
+    name: data-snapshot/snapshot
     allow_duplicates: no

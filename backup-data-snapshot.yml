@@ -3,4 +3,4 @@
   remote_user: root
   roles:
      - config
-     - data-snapshot-backup-server
+     - data-snapshot/restoration-mirror

@@ -4,4 +4,4 @@
   remote_user: root
   roles:
      - config
-     - data-snapshot-origin-server
+     - data-snapshot/origin-server

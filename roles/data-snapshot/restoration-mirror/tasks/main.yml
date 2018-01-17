@@ -1,5 +1,5 @@
 ---
 
 - include_role:
-    name: data-snapshot-server
+    name: data-snapshot/server
     allow_duplicates: no
