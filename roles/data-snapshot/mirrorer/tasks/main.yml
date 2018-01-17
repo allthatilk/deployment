@@ -1,0 +1,9 @@
+---
+
+- name: Set a task running to update the Snapshot on a regular basis
+  cron:
+    name: "Update Data Snapshot Mirror"
+    state: present
+    user: "{{ data_snapshot_user_account_name }}"
+    minute: "3-59/19"
+    job: "cd {{ data_snapshot_directory }}/{{ data_snapshot_git_repo_folder_name }}/ && git pull origin"

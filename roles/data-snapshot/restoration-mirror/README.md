@@ -6,6 +6,8 @@ Should the origin fail, restoration can occur from this location.
 
 TODO: Assess the complications that could occur should the origin fail before this has had a chance to update, but after something else has updated.
 
+---
+
 ## Design Exploration
 
 ### Background

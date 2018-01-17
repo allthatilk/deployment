@@ -4,6 +4,9 @@
     name: git-server
     allow_duplicates: no
 
+- group_by:
+    key: data-snapshot-server
+
 - include_role:
     name: data-snapshot/snapshot
     allow_duplicates: no

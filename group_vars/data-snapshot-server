@@ -1,4 +1,5 @@
 ---
 
 data_snapshot_directory: "{{ git_server_directory }}"
+data_snapshot_git_repo_folder_name: "data-snapshot.git"
 data_snapshot_user_account_name: "{{ git_user_account_name }}"

@@ -4,6 +4,13 @@
     name: data-snapshot/server
     allow_duplicates: no
 
+# stop mirror cron job being a thing
+- name: Remove cron job attempting to update a Data Snapshot mirror
+  cron:
+    name: "Update Data Snapshot Mirror"
+    state: absent
+    user: "{{ data_snapshot_user_account_name }}"
+
 - include_role:
     name: data-snapshot/registry-refresher
     allow_duplicates: no
