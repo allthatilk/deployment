@@ -96,6 +96,11 @@
   - name: Create the iati-datastore tables
     command: iati create_database
 
+  - name: Grant the datastore user access to all database tables
+    become: true
+    become_user: postgres
+    command: psql -d iati-datastore -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO datastore;"
+
   - name: Start crawler to get source data
     command: iati crawl update
 
