@@ -4,7 +4,7 @@
   gather_facts: false
 
   environment:
-    DATABASE_URL: postgres:///iati_datastore
+    DATABASE_URL: postgres:///iati-datastore
 
 
   tasks:
@@ -52,29 +52,46 @@
       repo: https://github.com/IATI/IATI-Datastore.git
       dest: /home/datastore/IATI-Datastore
       update: yes
+    become: yes
+    become_user: datastore
+
+  - name: Copy the datastore.wsgi file
+    copy:
+      remote_src: yes
+      src: /home/datastore/IATI-Datastore/datastore.wsgi
+      dest: /home/datastore/datastore.wsgi
+      owner: datastore
+      group: datastore
 
   - name: Install requirements via pip
     pip:
       chdir: /home/datastore/IATI-Datastore
-      requirements: requirements.txt
+      requirements: requirements_dev.txt
 
-  - name: Create postgres database 'iati_datastore'
+  - name: Create postgres role for datastore user
+    postgresql_user:
+      name: datastore
+    become: true
+    become_user: postgres
+
+  - name: Create postgres role for datastore user
+    postgresql_user:
+      name: root
+    become: true
+    become_user: postgres
+
+  - name: Create postgres database 'iati-datastore'
     become: true
     become_user: postgres
     postgresql_db:
-      name: iati_datastore
+      name: iati-datastore
+      encoding: UTF-8
+      owner: datastore
 
   - name: Set environment variable to link to the postgres database
     lineinfile:
       dest: /etc/environment
-      line: "export DATABASE_URL=postgres:///iati_datastore"
-
-  - name: Create postgres role for root user
-    postgresql_user:
-      db: iati_datastore
-      name: root
-    become: true
-    become_user: postgres
+      line: "export DATABASE_URL=postgres:///iati-datastore"
 
   - name: Create the iati-datastore tables
     command: iati create_database
@@ -85,17 +102,18 @@
   - cron:
       name: "Start worker to download and index datafiles"
       special_time: reboot
-      job: "sleep 10m; iati queue background"
+      job: "sleep 5m; iati queue background"
 
   - cron:
       name: "Update source data with crawler"
-      minute: "30"
-      hour: "0-23/5"
-      job: "iati crawl update"
+      special_time: reboot
+      job: "sleep 2m; iati crawl update"
+      # minute: "30"
+      # hour: "0-23/5"
 
   - name: Copy apache2 config file to sites-available
     copy:
-      remote_src: No
+      remote_src: no
       src: apache2.conf
       dest: /etc/apache2/sites-available/000-default.conf
       owner: root
