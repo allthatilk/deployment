@@ -74,7 +74,8 @@
     become: true
     become_user: postgres
 
-  - name: Create postgres role for datastore user
+# test if this is necessary
+  - name: Create postgres role for root user
     postgresql_user:
       name: root
     become: true
@@ -96,25 +97,44 @@
   - name: Create the iati-datastore tables
     command: iati create_database
 
+# test if this is necessary
+  - name: Grant the datastore user access to all database tables
+    become: true
+    become_user: postgres
+    command: psql -d iati-datastore -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;"
+
   - name: Grant the datastore user access to all database tables
     become: true
     become_user: postgres
     command: psql -d iati-datastore -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO datastore;"
 
-  - name: Start crawler to get source data
-    command: iati crawl update
+# iati queue background requires this to run
+  - cron:
+      name: PATH
+      env: yes
+      value: /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+      user: datastore
+
+# test whether this is necessary
+  - cron:
+      name: DATABASE_URL
+      env: yes
+      value: postgres:///iati-datastore
+      user: datastore
+      insertafter: PATH
+
+  - cron:
+      name: "Update source data with crawler"
+      job: "iati crawl update"
+      minute: "30"
+      hour: "0-23/5"
+      user: datastore
 
   - cron:
       name: "Start worker to download and index datafiles"
       special_time: reboot
-      job: "sleep 5m; iati queue background"
-
-  - cron:
-      name: "Update source data with crawler"
-      special_time: reboot
-      job: "sleep 2m; iati crawl update"
-      # minute: "30"
-      # hour: "0-23/5"
+      job: "sleep 2m; iati queue background"
+      user: datastore
 
   - name: Copy apache2 config file to sites-available
     copy:
@@ -148,11 +168,13 @@
     async: 1
     poll: 0
 
-  # - name: Set wait_host to ansible_host
-  #   set_fact: wait_host="{{ ansible_host }}"
-
   - name: Wait 30 seconds for server to come back
     local_action: wait_for host={{ inventory_hostname }} port=22 delay=20 connect_timeout=200
+
+  - name: "Update source data with crawler"
+    become: true
+    become_user: datastore
+    command: "iati crawl update"
 
   handlers:
     - name: restart apache
