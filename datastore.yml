@@ -97,16 +97,15 @@
   - name: Create the iati-datastore tables
     command: iati create_database
 
-# test if this is necessary
-  - name: Grant the datastore user access to all database tables
-    become: true
-    become_user: postgres
-    command: psql -d iati-datastore -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;"
-
   - name: Grant the datastore user access to all database tables
     become: true
     become_user: postgres
     command: psql -d iati-datastore -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO datastore;"
+
+  - name: Grant the datastore user access to all database sequences
+    become: true
+    become_user: postgres
+    command: psql -d iati-datastore -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO datastore;"
 
 # iati queue background requires this to run
   - cron:
