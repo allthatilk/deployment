@@ -6,10 +6,10 @@
   environment:
     DATABASE_URL: postgres:///iati-datastore
 
-
+# Disappear once roles sorted
   tasks:
 
-  - name: install python 2
+  - name: install python 2 # Remove for python3 in group vars/all.yml
     raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
 
   - name: Create a datastore user
@@ -46,14 +46,13 @@
       name: rewrite
       state: present
 
-
   - name: Clone the repository
+    become: true
+    become_user: datastore
     git:
       repo: https://github.com/IATI/IATI-Datastore.git
       dest: /home/datastore/IATI-Datastore
       update: yes
-    become: yes
-    become_user: datastore
 
   - name: Copy the datastore.wsgi file
     copy:
@@ -61,7 +60,6 @@
       src: /home/datastore/IATI-Datastore/datastore.wsgi
       dest: /home/datastore/datastore.wsgi
       owner: datastore
-      group: datastore
 
   - name: Install requirements via pip
     pip:
@@ -69,17 +67,10 @@
       requirements: requirements_dev.txt
 
   - name: Create postgres role for datastore user
+    become: true
+    become_user: postgres
     postgresql_user:
       name: datastore
-    become: true
-    become_user: postgres
-
-# test if this is necessary
-  - name: Create postgres role for root user
-    postgresql_user:
-      name: root
-    become: true
-    become_user: postgres
 
   - name: Create postgres database 'iati-datastore'
     become: true
@@ -95,17 +86,9 @@
       line: "export DATABASE_URL=postgres:///iati-datastore"
 
   - name: Create the iati-datastore tables
+    become: true
+    become_user: datastore
     command: iati create_database
-
-  - name: Grant the datastore user access to all database tables
-    become: true
-    become_user: postgres
-    command: psql -d iati-datastore -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO datastore;"
-
-  - name: Grant the datastore user access to all database sequences
-    become: true
-    become_user: postgres
-    command: psql -d iati-datastore -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO datastore;"
 
 # iati queue background requires this to run
   - cron:
@@ -113,14 +96,6 @@
       env: yes
       value: /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
       user: datastore
-
-# test whether this is necessary
-  - cron:
-      name: DATABASE_URL
-      env: yes
-      value: postgres:///iati-datastore
-      user: datastore
-      insertafter: PATH
 
   - cron:
       name: "Update source data with crawler"
@@ -145,24 +120,7 @@
       mode: 0644
     notify: restart apache
 
-  - name: Enable default site with apache2
-    command: a2ensite 000-default
-    args:
-      creates: /etc/apache2/sites-enabled/000-default.conf
-    notify: restart apache
-
-  - name: Add datastore group
-    group:
-      name: datastore
-      state: present
-
-  - name: Add www-data to datastore group
-    user:
-      name: www-data
-      group: datastore
-
   - name: Restart server
-    become: yes
     shell: sleep 2 && reboot
     async: 1
     poll: 0
