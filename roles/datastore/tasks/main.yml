@@ -1,0 +1,78 @@
+---
+- name: Create a datastore user
+  user:
+    name: datastore
+    comment: "Datastore Account"
+    createhome: yes
+
+- name: Install Datastore dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+     - git
+     - redis-server
+     - libpq-dev
+     - libxml2-dev
+     - libxslt-dev
+     - libevent-dev
+
+- name: Clone the repository
+  become: true
+  become_user: datastore
+  git:
+    repo: https://github.com/IATI/IATI-Datastore.git
+    dest: /home/datastore/IATI-Datastore
+    update: yes
+
+- name: Copy the datastore.wsgi file
+  copy:
+    remote_src: yes
+    src: /home/datastore/IATI-Datastore/datastore.wsgi
+    dest: /home/datastore/datastore.wsgi
+    owner: datastore
+
+- name: Install requirements via pip
+  pip:
+    chdir: /home/datastore/IATI-Datastore
+    requirements: requirements_dev.txt
+
+- name: Create the iati-datastore tables
+  become: true
+  become_user: datastore
+  command: iati create_database
+
+# iati queue background requires this to run
+- cron:
+    name: PATH
+    env: yes
+    value: /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+    user: datastore
+
+- cron:
+    name: "Update source data with crawler"
+    job: "iati crawl update"
+    minute: "30"
+    hour: "0-23/5"
+    user: datastore
+
+- cron:
+    name: "Start worker to download and index datafiles"
+    special_time: reboot
+    job: "sleep 2m; iati queue background"
+    user: datastore
+
+- name: Restart server
+  become: yes
+  shell: sleep 2 && reboot
+  async: 1
+  poll: 0
+
+- name: Wait 30 seconds for server to come back
+  local_action: wait_for host={{ inventory_hostname }} port=22 delay=20 connect_timeout=200
+
+- name: "Update source data with crawler"
+  become: true
+  become_user: datastore
+  command: "iati crawl update"

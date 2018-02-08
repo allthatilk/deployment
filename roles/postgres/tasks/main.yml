@@ -1,0 +1,36 @@
+---
+- name: Install psql dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+     - python-minimal
+     - python-pip
+     - python-dev
+     - postgresql
+
+- name: Install psycopg2 via pip
+  pip:
+    name: psycopg2
+    version: 2.7.3.2
+    state: present
+
+- name: Create postgres role for datastore user
+  become: true
+  become_user: postgres
+  postgresql_user:
+    name: datastore
+
+- name: Create postgres database 'iati-datastore'
+  become: true
+  become_user: postgres
+  postgresql_db:
+    name: iati-datastore
+    encoding: UTF-8
+    owner: datastore
+
+- name: Set environment variable to link to the postgres database
+  lineinfile:
+    dest: /etc/environment
+    line: "export DATABASE_URL=postgres:///iati-datastore"
