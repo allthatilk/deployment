@@ -1,12 +1,11 @@
 ---
-- name: Install apache2 dependencies
+- name: Install apache2
   apt:
     name: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
-     - apache2
-     - libapache2-mod-wsgi
+    "{{ apache2_packages }}"
 
 - name: Enable mod_headers
   apache2_module:
@@ -21,8 +20,8 @@
 - name: Copy apache2 config file to sites-available
   copy:
     remote_src: no
-    src: apache2.conf
-    dest: /etc/apache2/sites-available/000-default.conf
+    src: "{{ apache2_conf_template }}"
+    dest: "{{ apache2_conf_destination }}"
     owner: root
     group: root
     mode: 0644

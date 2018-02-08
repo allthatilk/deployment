@@ -5,18 +5,17 @@
     comment: "Datastore Account"
     createhome: yes
 
+# must be run here as the WSGI process will be run on apache restart and needs datastore user to exist
+- include_role:
+    name: apache2
+
 - name: Install Datastore dependencies
   apt:
     name: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
-     - git
-     - redis-server
-     - libpq-dev
-     - libxml2-dev
-     - libxslt-dev
-     - libevent-dev
+     "{{ datastore_packages }}"
 
 - name: Clone the repository
   become: true
@@ -36,7 +35,7 @@
 - name: Install requirements via pip
   pip:
     chdir: /home/datastore/IATI-Datastore
-    requirements: requirements_dev.txt
+    requirements: requirements_dev.txt # Need to later differentiate between dev and production install
 
 - name: Create the iati-datastore tables
   become: true
@@ -70,7 +69,7 @@
   poll: 0
 
 - name: Wait 30 seconds for server to come back
-  local_action: wait_for host={{ inventory_hostname }} port=22 delay=20 connect_timeout=200
+  local_action: wait_for host="{{ inventory_hostname }}" port=22 delay=20 connect_timeout=200
 
 - name: "Update source data with crawler"
   become: true
