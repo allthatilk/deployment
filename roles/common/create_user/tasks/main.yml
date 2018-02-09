@@ -1,0 +1,6 @@
+---
+- name: Create a custom user
+  user:
+    name: "{{ custom_user }}"
+    comment: "{{ custom_user }} account"
+    createhome: yes

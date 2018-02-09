@@ -1,0 +1,7 @@
+---
+- name: Copy wsgi file
+  copy:
+    remote_src: yes
+    src: "{{ user_home_dir }}{{ repo_name }}{{ wsgi_file }}"
+    dest: "{{ user_home_dir }}{{ wsgi_file }}"
+    owner: "{{ custom_user }}"

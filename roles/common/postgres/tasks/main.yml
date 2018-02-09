@@ -1,0 +1,31 @@
+---
+- name: Install postgresql
+  apt:
+    name: postgresql
+    state: present
+    update_cache: yes
+
+- name: Install psycopg2
+  pip:
+    name: psycopg2
+    version: 2.7.3.2
+    state: present
+
+- name: Create postgres role for custom user
+  become: true
+  become_user: postgres
+  postgresql_user:
+    name: "{{ custom_user }}"
+
+- name: Create postgres custom database
+  become: true
+  become_user: postgres
+  postgresql_db:
+    name: "{{ custom_database }}"
+    encoding: UTF-8
+    owner: "{{ custom_user }}"
+
+- name: Set environment variable to link to the postgres database
+  lineinfile:
+    dest: /etc/environment
+    line: "export DATABASE_URL=postgres:///{{ custom_database }}"
