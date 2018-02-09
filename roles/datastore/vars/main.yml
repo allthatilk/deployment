@@ -1,8 +1,0 @@
----
-datastore_packages:
-  - git
-  - redis-server
-  - libpq-dev
-  - libxml2-dev
-  - libxslt-dev
-  - libevent-dev

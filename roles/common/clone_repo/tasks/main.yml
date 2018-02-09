@@ -1,0 +1,6 @@
+---
+- name: Clone the repository
+  git:
+    repo: "{{ github_repo }}"
+    dest: "{{ user_home_dir }}{{ repo_name }}"
+    update: yes

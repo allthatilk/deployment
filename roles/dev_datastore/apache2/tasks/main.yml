@@ -1,11 +1,6 @@
 ---
-- name: Install apache2
-  apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    "{{ apache2_packages }}"
+- include_role:
+    name: common/install_dependencies
 
 - name: Enable mod_headers
   apache2_module:

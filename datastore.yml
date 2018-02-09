@@ -3,9 +3,10 @@
   remote_user: root
   gather_facts: no
   roles:
-    - python2
-    - postgres
-    - datastore
+    - common/python2
+    - common/postgres
+    - common/create_user
+    - dev_datastore/datastore_setup
 
   environment:
     DATABASE_URL: postgres:///iati-datastore

@@ -1,0 +1,3 @@
+---
+- name: "Update source data with crawler"
+  command: "iati crawl update"
