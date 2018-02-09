@@ -24,3 +24,16 @@
       repo: https://github.com/IATI/IATI-Public-Validator.git
       dest: /var/www/html/IATI-Public-Validator
       update: yes
+
+  - name: Create an upload directory
+    file:
+      path: /var/www/html/IATI-Public-Validator/upload
+      state: directory
+      mode: 0755
+
+  - name: Make a copy of the settings.php file
+    copy:
+      remote_src: yes
+      src: /var/www/html/IATI-Public-Validator/example.settings.php
+      dest: /var/www/html/IATI-Public-Validator/settings.php
+
