@@ -5,25 +5,9 @@
   roles:
     - common/python2
     - dev_validator/validator_setup
+    - common/clone_repo
 
   tasks:
-
-  - name: Install Validator dependencies
-    apt:
-      name: "{{ item }}"
-      state: present
-      update_cache: yes
-    with_items:
-       - git
-       - apache2
-       - php
-       - libapache2-mod-php
-
-  - name: Clone the validator git repo
-    git:
-      repo: https://github.com/IATI/IATI-Public-Validator.git
-      dest: /var/www/html/IATI-Public-Validator
-      update: yes
 
   - name: Create an upload directory
     file:

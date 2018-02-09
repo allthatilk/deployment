@@ -1,4 +1,5 @@
 ---
+# consider adding git dependency install to this role
 - name: Clone the repository
   git:
     repo: "{{ github_repo }}"

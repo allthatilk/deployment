@@ -4,3 +4,13 @@ packages:
   - apache2
   - php
   - libapache2-mod-php
+
+github_repo: https://github.com/IATI/IATI-Public-Validator.git
+
+user_home_dir: /var/www/html/
+
+repo_name: IATI-Public-Validator
+
+# wsgi_file: datastore.wsgi
+
+requirements_file: requirements_dev.txt
