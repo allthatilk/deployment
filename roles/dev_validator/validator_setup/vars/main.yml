@@ -1,0 +1,6 @@
+---
+packages:
+  - git
+  - apache2
+  - php
+  - libapache2-mod-php

@@ -2,11 +2,11 @@
 - hosts: validator-dev-ansible
   remote_user: root
   gather_facts: false
+  roles:
+    - common/python2
+    - dev_validator/validator_setup
 
   tasks:
-
-  - name: install python 2
-    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
 
   - name: Install Validator dependencies
     apt:
