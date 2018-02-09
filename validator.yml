@@ -37,3 +37,9 @@
       src: /var/www/html/IATI-Public-Validator/example.settings.php
       dest: /var/www/html/IATI-Public-Validator/settings.php
 
+  - name: Replace default settings with appropriate variables
+    replace:
+      path: /var/www/html/IATI-Public-Validator/settings.php
+      regexp: '$host = "http://localhost/Webs/validate-me/";'
+      replace: '$host = "123";'
+      backup: yes
