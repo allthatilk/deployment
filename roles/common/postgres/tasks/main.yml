@@ -11,6 +11,7 @@
     version: 2.7.3.2
     state: present
 
+# the postgres user appears to work out of the box and does not require manual creation
 - name: Create postgres role for custom user
   become: true
   become_user: postgres
