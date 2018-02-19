@@ -5,3 +5,7 @@ packages:
 
 apache2_conf_template: apache2.conf
 apache2_conf_destination: /etc/apache2/sites-available/000-default.conf
+
+apache2_modules:
+  - headers
+  - rewrite

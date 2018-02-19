@@ -1,16 +1,14 @@
 ---
+# currently residing in dev-datastore rather than common as only needed by datastore. Can be extracted at a later date if necessary.
 - include_role:
     name: common/install_dependencies
 
-- name: Enable mod_headers
+- name: Enable apache2 modules
   apache2_module:
-    name: headers
+    name: "{{ item }}"
     state: present
-
-- name: Enable mod_rewrite
-  apache2_module:
-    name: rewrite
-    state: present
+  with_items:
+    - "{{ apache2_modules }}"
 
 - name: Copy apache2 config file to sites-available
   copy:
