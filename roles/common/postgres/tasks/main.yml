@@ -1,9 +1,6 @@
 ---
-- name: Install postgresql
-  apt:
-    name: postgresql
-    state: present
-    update_cache: yes
+- include_role:
+    name: common/install_dependencies
 
 # this is a specific PostgreSQL adapter for Python
 - name: Install psycopg2

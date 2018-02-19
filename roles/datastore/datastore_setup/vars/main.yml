@@ -1,5 +1,5 @@
 ---
-packages:
+required_packages:
   - git
   - libevent-dev
   - libpq-dev

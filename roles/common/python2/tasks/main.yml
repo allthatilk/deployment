@@ -3,8 +3,5 @@
 - name: Install python 2
   raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
 
-- name: Install pip
-  apt:
-    name: python-pip
-    state: present
-    update_cache: yes
+- include_role:
+    name: common/install_dependencies
