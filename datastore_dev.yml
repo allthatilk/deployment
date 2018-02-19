@@ -6,7 +6,7 @@
     - common/python2
     - common/postgres
     - common/create_user
-    - dev_datastore/datastore_setup
+    - datastore/datastore_setup
 
   environment:
     DATABASE_URL: postgres:///iati-datastore
@@ -15,3 +15,4 @@
     custom_user: datastore
     custom_database: iati-datastore
     db_user: "{{ custom_user }}"
+    requirements_file: requirements_dev.txt
