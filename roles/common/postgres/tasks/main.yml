@@ -5,6 +5,7 @@
     state: present
     update_cache: yes
 
+# this is a specific PostgreSQL adapter for Python
 - name: Install psycopg2
   pip:
     name: psycopg2
