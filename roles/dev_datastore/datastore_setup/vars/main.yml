@@ -1,11 +1,11 @@
 ---
 packages:
   - git
-  - redis-server
+  - libevent-dev
   - libpq-dev
   - libxml2-dev
   - libxslt-dev
-  - libevent-dev
+  - redis-server
 
 github_repo: https://github.com/IATI/IATI-Datastore.git
 
