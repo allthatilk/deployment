@@ -14,3 +14,4 @@
   vars:
     custom_user: datastore
     custom_database: iati-datastore
+    db_user: "{{ custom_user }}"

@@ -7,7 +7,7 @@
   become: true
   become_user: "{{ custom_user }}"
 
-- include_tasks: copy_wsgi_file_name.yml
+- include_tasks: copy_wsgi_file.yml
 
 - include_role:
     name: dev_datastore/pip_install

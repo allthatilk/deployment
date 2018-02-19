@@ -13,6 +13,6 @@ user_home_dir: /home/{{ custom_user }}/
 
 repo_dir: IATI-Datastore/
 
-wsgi_file_name_name: datastore.wsgi
+wsgi_file_name: datastore.wsgi
 
 requirements_file: requirements_dev.txt

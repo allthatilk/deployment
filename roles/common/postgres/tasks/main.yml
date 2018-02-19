@@ -17,7 +17,7 @@
   become: true
   become_user: postgres
   postgresql_user:
-    name: "{{ custom_user }}"
+    name: "{{ db_user }}"
 
 - name: Create postgres custom database
   become: true
@@ -25,7 +25,7 @@
   postgresql_db:
     name: "{{ custom_database }}"
     encoding: UTF-8
-    owner: "{{ custom_user }}"
+    owner: "{{ db_user }}"
 
 - name: Set environment variable to link to the postgres database
   lineinfile:
