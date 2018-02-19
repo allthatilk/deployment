@@ -23,11 +23,11 @@
   become: true
   become_user: postgres
   postgresql_db:
-    name: "{{ custom_database }}"
+    name: "{{ custom_database_name }}"
     encoding: UTF-8
     owner: "{{ db_user }}"
 
 - name: Set environment variable to link to the postgres database
   lineinfile:
     dest: /etc/environment
-    line: "export DATABASE_URL=postgres:///{{ custom_database }}"
+    line: "export DATABASE_URL={{ db_env_var }}"
