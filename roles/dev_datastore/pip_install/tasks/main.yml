@@ -1,5 +1,5 @@
 ---
 - name: Install requirements via pip
   pip:
-    chdir: "{{ user_home_dir }}{{ repo_name }}"
+    chdir: "{{ user_home_dir }}{{ repo_dir }}"
     requirements: "{{ requirements_file }}"

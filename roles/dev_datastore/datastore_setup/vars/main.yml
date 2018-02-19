@@ -11,7 +11,7 @@ github_repo: https://github.com/IATI/IATI-Datastore.git
 
 user_home_dir: /home/datastore/
 
-repo_name: IATI-Datastore/
+repo_dir: IATI-Datastore/
 
 wsgi_file: datastore.wsgi
 

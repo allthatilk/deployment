@@ -2,5 +2,5 @@
 - name: Clone the repository
   git:
     repo: "{{ github_repo }}"
-    dest: "{{ user_home_dir }}{{ repo_name }}"
+    dest: "{{ user_home_dir }}{{ repo_dir }}"
     update: yes
