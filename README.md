@@ -19,11 +19,9 @@ The Datastore playbook was only tested on Ubuntu 16.04.3 x64 for our internal us
 
 ```
 # Ping a server
-ansible all --inventory-file=servers.ini --module-name ping -u root
 ansible all -i servers.ini -m ping -u root
 
 # Remotely execute code
-ansible all -i servers.ini -m command -u root --args "uptime"
 ansible all -i servers.ini -m command -u root -a "uptime"
 
 # Execute a playbook
