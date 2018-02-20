@@ -1,5 +1,5 @@
 ---
-# currently residing in dev-datastore rather than common as only needed by datastore. Can be extracted at a later date if necessary.
+# currently residing in datastore rather than common as only needed by datastore. Can be extracted at a later date if necessary.
 - include_role:
     name: common/install_dependencies
 
