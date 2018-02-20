@@ -1,6 +1,6 @@
 ---
 - name: Clone the repository
   git:
-    repo: "{{ github_repo }}"
+    repo: "{{ git_clone_address }}"
     dest: "{{ user_home_dir }}{{ repo_dir }}"
     update: yes

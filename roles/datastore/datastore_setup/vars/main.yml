@@ -7,7 +7,7 @@ required_packages:
   - libxslt-dev
   - redis-server
 
-github_repo: https://github.com/IATI/IATI-Datastore.git
+git_clone_address: https://github.com/IATI/IATI-Datastore.git
 
 user_home_dir: /home/{{ custom_user }}/
 
