@@ -27,4 +27,4 @@
 - name: Set environment variable to link to the postgres database
   lineinfile:
     dest: /etc/environment
-    line: "export DATABASE_URL={{ db_env_var }}"
+    line: "export DATABASE_URL={{ db_uri }}"
