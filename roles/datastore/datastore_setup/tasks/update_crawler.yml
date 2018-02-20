@@ -1,3 +1,4 @@
 ---
+# Need this so the worker has something to do as soon as it starts working.
 - name: "Update source data with crawler"
   command: "iati crawl update"
