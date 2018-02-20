@@ -1,0 +1,19 @@
+---
+- hosts: datastore-dev
+  remote_user: root
+  gather_facts: no
+  roles:
+    - common/python2
+    - common/postgres
+    - common/create_user
+    - datastore/datastore_setup
+
+  environment:
+    DATABASE_URL: "{{ db_uri }}"
+
+  vars:
+    custom_user: datastore
+    custom_database_name: iati-datastore
+    db_uri: postgres:///{{ custom_database_name }}
+    db_user: "{{ custom_user }}"
+    requirements_file: requirements_dev.txt

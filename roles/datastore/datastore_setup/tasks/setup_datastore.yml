@@ -1,0 +1,5 @@
+---
+- name: Create the iati-datastore tables
+  command: iati create_database
+
+- include_tasks: setup_cron_jobs.yml
