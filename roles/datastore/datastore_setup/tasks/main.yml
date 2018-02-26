@@ -1,0 +1,27 @@
+---
+- include_role:
+    name: common/install_dependencies
+
+- include_role:
+    name: common/clone_repo
+  become: true
+  become_user: "{{ custom_user }}"
+
+- include_tasks: copy_wsgi_file.yml
+
+- include_role:
+    name: datastore/pip_install
+
+- include_tasks: setup_datastore.yml
+  become: true
+  become_user: "{{ custom_user }}"
+
+- include_role:
+    name: common/restart_server
+
+- include_role:
+    name: datastore/apache2
+
+- include_tasks: update_crawler.yml
+  become: true
+  become_user: "{{ custom_user }}"

@@ -1,0 +1,17 @@
+---
+# iati queue background requires this to run
+- cron:
+    name: PATH
+    env: yes
+    value: /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+- cron:
+    name: "Update source data with crawler"
+    job: "iati crawl update"
+    minute: "30"
+    hour: "0-23/5"
+
+- cron:
+    name: "Start worker to download and index datafiles"
+    special_time: reboot
+    job: "sleep 2m; iati queue background"
