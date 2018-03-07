@@ -1,7 +1,7 @@
 ---
 required_packages:
   - apache2
-  - libapache2-mod-wsgi
+  - "{{ apache2_mod_wsgi_version }}"
 
 apache2_conf_template: "{{ apache2_conf_file }}"
 apache2_conf_destination: /etc/apache2/sites-available/000-default.conf
