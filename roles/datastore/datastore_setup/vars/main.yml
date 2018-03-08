@@ -14,3 +14,7 @@ user_home_dir: /home/{{ custom_user }}/
 repo_dir: IATI-Datastore/
 
 wsgi_file_name: datastore.wsgi
+
+apache2_conf_file: apache2.conf
+
+apache2_mod_wsgi_version: libapache2-mod-wsgi
