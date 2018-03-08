@@ -17,5 +17,4 @@ wsgi_file_name: datastore.wsgi
 
 apache2_conf_file: apache2.conf
 
-# This variable may be refactored away later if it becomes cumbersome as the number of playbooks increases and we no longer wish to specify the version of mod-wsgi to use for each project
 apache2_mod_wsgi_version: libapache2-mod-wsgi
