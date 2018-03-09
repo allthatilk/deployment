@@ -1,0 +1,5 @@
+---
+required_packages:
+  - git
+  - python3-pip
+  - virtualenv

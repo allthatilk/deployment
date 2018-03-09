@@ -1,0 +1,19 @@
+---
+- hosts: wagtail
+  remote_user: root
+  roles:
+    - common/install_default_packages
+    - common/postgres
+    - common/create_user
+    - wagtail/wagtail_setup
+
+  environment:
+    DJANGO_SETTINGS_MODULE: standardtest.settings.dev
+
+  vars:
+    custom_user: imogenk
+    custom_database_name: standardtest
+    db_uri: postgres:///{{ custom_database_name }}
+    db_user: "{{ custom_user }}"
+    requirements_file: requirements.txt
+    app_name: standardtest

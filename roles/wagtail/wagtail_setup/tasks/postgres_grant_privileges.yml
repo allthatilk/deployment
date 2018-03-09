@@ -1,0 +1,8 @@
+---
+- postgresql_privs:
+    db: "{{ custom_database_name }}"
+    privs: ALL
+    type: database
+    roles: "{{ custom_user }}"
+  become: true
+  become_user: postgres

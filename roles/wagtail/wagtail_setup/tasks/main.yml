@@ -1,0 +1,17 @@
+---
+- include_role:
+    name: common/clone_repo
+  become: true
+  become_user: "{{ custom_user }}"
+
+- include_tasks: setup_local_settings.yml
+
+- include_role:
+    name: wagtail/pip_install
+
+- include_tasks: postgres_grant_privileges.yml
+
+- include_tasks: django_setup.yml
+
+- include_role:
+    name: common/apache2
