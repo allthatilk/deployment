@@ -9,7 +9,9 @@
 - include_role:
     name: wagtail/pip_install
 
-- include_tasks: postgres_grant_privileges.yml
+- include_tasks: django_postgres_setup.yml
+  become: true
+  become_user: postgres
 
 - include_tasks: django_setup.yml
 

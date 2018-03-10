@@ -4,5 +4,8 @@
     privs: ALL
     type: database
     roles: "{{ custom_user }}"
-  become: true
-  become_user: postgres
+
+- postgresql_user:
+    user: "{{ custom_user }}"
+    db: "{{ custom_database_name }}"
+    password: "{{ db_password }}"
