@@ -7,7 +7,3 @@
     app_path: "{{ django_dir }}"
     virtualenv: "{{ virtualenv_path }}"
 
-- django_manage:
-    command: "createsuperuser --noinput --username=admin --email=admin@example.com"
-    app_path: "{{ django_dir }}"
-    virtualenv: "{{ virtualenv_path }}"
