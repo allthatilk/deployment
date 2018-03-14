@@ -1,9 +1,10 @@
 ---
-- debug:
-    msg: "{{ django_dir }}"
-
 - django_manage:
     command: migrate
     app_path: "{{ django_dir }}"
     virtualenv: "{{ virtualenv_path }}"
 
+- django_manage:
+    command: collectstatic
+    app_path: "{{ django_dir }}"
+    virtualenv: "{{ virtualenv_path }}"

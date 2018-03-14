@@ -1,0 +1,6 @@
+---
+- file:
+    path: "{{ django_dir }}standarddoc/templates/iati-activities.html"
+    owner: "{{ custom_user }}"
+    group: www-data
+    mode: 0664

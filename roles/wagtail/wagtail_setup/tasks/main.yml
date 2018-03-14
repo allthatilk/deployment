@@ -15,5 +15,7 @@
 
 - include_tasks: django_setup.yml
 
+- include_tasks: change_file_permissions.yml
+
 - include_role:
     name: common/apache2

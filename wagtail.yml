@@ -1,5 +1,5 @@
 ---
-- hosts: wagtail
+- hosts: wagtail-temp
   remote_user: root
   roles:
     - common/install_default_packages
