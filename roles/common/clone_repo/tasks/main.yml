@@ -4,3 +4,4 @@
     repo: "{{ git_clone_address }}"
     dest: "{{ user_home_dir }}{{ repo_dir }}"
     update: yes
+    version: "{{ git_clone_branch|default(omit) }}"

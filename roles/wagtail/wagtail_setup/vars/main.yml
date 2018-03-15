@@ -1,6 +1,8 @@
 ---
 git_clone_address: https://github.com/IATI/preview-website.git
 
+git_clone_branch: setup-wagtail
+
 user_home_dir: /home/{{ custom_user }}/
 
 repo_dir: preview-site/
