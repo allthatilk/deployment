@@ -7,9 +7,6 @@
     - common/create_user
     - wagtail/wagtail_setup
 
-  environment:
-    DJANGO_SETTINGS_MODULE: iati.settings.dev
-
   vars:
     custom_user: iati-website
     custom_database_name: iati-db
