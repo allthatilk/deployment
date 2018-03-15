@@ -8,12 +8,12 @@
     - wagtail/wagtail_setup
 
   environment:
-    DJANGO_SETTINGS_MODULE: standardtest.settings.dev
+    DJANGO_SETTINGS_MODULE: iati.settings.dev
 
   vars:
-    custom_user: imogenk
-    custom_database_name: standardtest
+    custom_user: iati-website
+    custom_database_name: iati-db
     db_uri: postgres:///{{ custom_database_name }}
     db_user: "{{ custom_user }}"
     requirements_file: requirements.txt
-    app_name: standardtest
+    app_name: iati

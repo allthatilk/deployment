@@ -1,6 +1,6 @@
 ---
 - name: Install requirements via pip
   pip:
-    chdir: "{{ user_home_dir }}{{ repo_dir }}"
+    chdir: "{{ django_dir }}"
     requirements: "{{ requirements_file }}"
     virtualenv: "{{ virtualenv_path }}"

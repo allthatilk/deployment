@@ -1,6 +1,6 @@
 ---
 - copy:
     src: local_encrypted.py
-    dest: "{{ django_dir }}standardtest/settings/local.py"
+    dest: "{{ django_dir }}iati/settings/local.py"
     owner: "{{ custom_user }}"
     mode: 0444

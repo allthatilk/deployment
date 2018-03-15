@@ -1,9 +1,9 @@
 ---
-git_clone_address: https://github.com/allthatilk/standardtest.git
+git_clone_address: https://github.com/IATI/preview-website.git
 
 user_home_dir: /home/{{ custom_user }}/
 
-repo_dir: wagtail-dev/
+repo_dir: preview-site/
 
 apache2_conf_file: apache2.conf
 
