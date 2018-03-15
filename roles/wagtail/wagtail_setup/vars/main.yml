@@ -1,0 +1,22 @@
+---
+git_clone_address: https://github.com/IATI/preview-website.git
+
+git_clone_branch: setup-wagtail
+
+user_home_dir: /home/{{ custom_user }}/
+
+repo_dir: preview-site/
+
+apache2_conf_file: apache2.conf
+
+django_dir: "{{ user_home_dir }}{{repo_dir}}{{ app_name }}/"
+
+virtualenv_path: "{{ user_home_dir }}{{ repo_dir }}pyenv"
+
+db_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          66346365643338356630326266343135666138623433343938313765373665393433393835613666
+          3538643366306266386565373134653865373239343865370a306261363833623763663866373939
+          61343863626362386162363764303433346130323030313964373738623734643538663531663338
+          6531653861323965350a623830316435383731646433326563393338363339346437353131393634
+          6435
