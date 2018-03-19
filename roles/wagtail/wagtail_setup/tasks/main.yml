@@ -16,4 +16,7 @@
 - include_tasks: django_setup.yml
 
 - include_role:
-    name: common/apache2
+    name: common/apache2/apache2_install
+
+- include_role:
+    name: common/apache2/apache2_restart

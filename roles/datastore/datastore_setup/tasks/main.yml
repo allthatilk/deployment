@@ -20,7 +20,10 @@
     name: common/restart_server
 
 - include_role:
-    name: common/apache2
+    name: common/apache2/apache2_install
+
+- include_role:
+    name: common/apache2/apache2_restart
 
 - include_tasks: update_crawler.yml
   become: true
