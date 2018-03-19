@@ -8,12 +8,37 @@
     state: present
   with_items:
     - "{{ apache2_modules }}"
+    
+# create a test configuration file that links in all of the required config
+- name: Apache | test Updated hosts
+  template: 
+     src: apache2.conf.j2 
+     dest: "/tmp/apache2-test.conf"
+     mode: 0644
+     owner: root
+     group: root
+     validate: 'apachectl -t -f %s'
+  register: apache_result
+  ignore_errors: yes
 
-- name: Copy apache2 config file to sites-available
+# if the config test succeeds we can put the new vhost live
+- name: Apache | enable host
   copy:
-    remote_src: no
-    src: "{{ apache2_conf_template }}"
+    remote_src: yes
+    src: "/tmp/apache2-test.conf"
     dest: "{{ apache2_conf_destination }}"
     owner: root
     group: root
     mode: 0644
+  when:  apache_result|success
+
+- name: Clear out test file
+  file: 
+    path: "/tmp/apache2-test.conf"
+    state: absent
+  when:  apache_result|success
+
+- name: Apache | enable host success
+  fail: msg="Apache configuration is invalid. Please check before re-running the playbook."
+  when: apache_result|failed
+  tags: [apache]

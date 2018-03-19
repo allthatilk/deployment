@@ -7,8 +7,6 @@ user_home_dir: /home/{{ custom_user }}/
 
 repo_dir: preview-site/
 
-apache2_conf_file: apache2.conf
-
 django_dir: "{{ user_home_dir }}{{repo_dir}}{{ app_name }}/"
 
 virtualenv_path: "{{ user_home_dir }}{{ repo_dir }}pyenv"
