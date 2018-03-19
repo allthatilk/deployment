@@ -17,9 +17,11 @@ wsgi_file_name: datastore.wsgi
 
 apache2_mod_wsgi_version: libapache2-mod-wsgi
 
-apache2_ip: *
+apache2_ip: '*'
 
 apache2_port: 80
+
+apache2_servername: localhost
 
 apache2_directories:
   - root: /
