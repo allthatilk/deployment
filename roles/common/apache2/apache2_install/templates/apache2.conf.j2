@@ -7,7 +7,11 @@
 
   ErrorLog ${APACHE_LOG_DIR}/error.log
   CustomLog ${APACHE_LOG_DIR}/access.log combined
-
+  
+  # Loops through each directory object in the apache2_directories list
+  # For every directory object, write Alias if it is defined
+  # Likewise, if file_location is specified a nested <Files> tag is included inside of the directory
+  # Options for the directory are also included prior to the "Require all granted" line
   {% for directory in apache2_directories %}
     {% if directory.alias_source is defined %}
   Alias {{ directory.alias_source }} {{ directory.alias_destination }}
@@ -28,6 +32,8 @@
   </Directory>
   {% endfor %}
 
+  # For all additional configuration lines in the Apache2 config
+  # E.g. WSGI processes, log levels, Access-Control-Allow-Origin
   {% for apache2_extra in apache2_extras %}
   {{ apache2_extra.line }}
   {% endfor %}
