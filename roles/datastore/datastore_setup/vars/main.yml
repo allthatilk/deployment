@@ -23,9 +23,9 @@ apache2_port: 80
 
 apache2_directories:
   - root: /
-  - options:
+    options:
     - line: Options FollowSymLinks
-    
+
 apache2_extras:
   - line: LogLevel info
   - line: WSGIDaemonProcess datastore user=datastore group=datastore processes=1 threads=15
