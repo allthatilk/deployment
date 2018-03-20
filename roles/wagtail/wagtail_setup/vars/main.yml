@@ -23,8 +23,6 @@ apache2_ip: '*'
 
 apache2_port: 80
 
-apache2_servername: localhost
-
 apache2_documentroot: /var/www/html
 
 apache2_directories:

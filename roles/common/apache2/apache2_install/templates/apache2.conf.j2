@@ -1,19 +1,8 @@
-# Include module configuration:
-Include /etc/apache2/mods-enabled/*.load
-Include /etc/apache2/mods-enabled/*.conf
-
-# Include ports listing
-Include /etc/apache2/ports.conf
-
-{% if apache2_servername is defined %}
-ServerName {{apache2_servername}}
-{% endif %}
-
-<VirtualHost {{apache2_ip}}:{{apache2_port}}>
+<VirtualHost {{ apache2_ip }}:{{ apache2_port }}>
   ServerAdmin webmaster@localhost
   
   {% if apache2_documentroot is defined %}
-  DocumentRoot {{apache2_documentroot}}
+  DocumentRoot {{ apache2_documentroot }}
   {% endif %}
 
   ErrorLog ${APACHE_LOG_DIR}/error.log
@@ -21,17 +10,17 @@ ServerName {{apache2_servername}}
 
   {% for directory in apache2_directories %}
     {% if directory.alias_source is defined %}
-  Alias {{directory.alias_source}} {{directory.alias_destination}}
+  Alias {{ directory.alias_source }} {{ directory.alias_destination }}
     {% endif %}
-  <Directory {{directory.root}}>
+  <Directory {{ directory.root }}>
     {% if directory.file_location is defined %}
-    <Files {{directory.file_location}}>
+    <Files {{ directory.file_location }}>
       Require all granted
     </Files>
     {% else %}
-    {% if directory.options is defined%}
+    {% if directory.options is defined %}
       {% for option in directory.options %}
-    {{option.line}}
+    {{ option.line }}
       {% endfor %}
     {% endif %}
     Require all granted
@@ -40,6 +29,6 @@ ServerName {{apache2_servername}}
   {% endfor %}
 
   {% for apache2_extra in apache2_extras %}
-  {{apache2_extra.line}}
+  {{ apache2_extra.line }}
   {% endfor %}
 </VirtualHost>

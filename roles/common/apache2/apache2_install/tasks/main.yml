@@ -8,40 +8,11 @@
     state: present
   with_items:
     - "{{ apache2_modules }}"
-    
-# Create log directory
-- name: Apache | Create log folder
-  file:
-    path: /etc/apache2/logs
-    state: directory
-    owner: root
-    group: root
-    mode: 0775
-    
-# create a test configuration file that links in all of the required config
-- name: Apache | test Updated hosts
+        
+- name: Write apache2 config files from Jinja template
   template: 
      src: apache2.conf.j2 
-     dest: "/tmp/apache2-test.conf"
+     dest: "{{ apache2_conf_destination }}"
      mode: 0644
      owner: root
      group: root
-     validate: 'apachectl -t -f %s'
-  register: apache_result
-  ignore_errors: yes
-
-# if the config test succeeds we can put the new vhost live
-- name: Apache | enable host
-  command: mv /tmp/apache2-test.conf {{ apache2_conf_destination }}
-  when:  apache_result|success
-
-- name: Clear out test file
-  file: 
-    path: "/tmp/apache2-test.conf"
-    state: absent
-  when:  apache_result|success
-
-- name: Apache | enable host success
-  fail: msg="Apache configuration is invalid. Please check before re-running the playbook."
-  when: apache_result|failed
-  tags: [apache]
