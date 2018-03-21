@@ -3,7 +3,7 @@
   remote_user: root
   roles:
     - common/install_default_packages
-    - common/postgres
+    - common/postgres/postgres_install
     - common/create_user
     - wagtail/wagtail_setup
 
