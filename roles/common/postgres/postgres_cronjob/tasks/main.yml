@@ -6,4 +6,4 @@
     name: "Database backup"
     minute: "0"
     hour: "0"
-    job: "pg_dumpall {{ custom_database_name }} > {{ database_dump_file }}
+    job: "pg_dump {{ custom_database_name }} > {{ backup_directory }}/{{ database_dump_file }}"
