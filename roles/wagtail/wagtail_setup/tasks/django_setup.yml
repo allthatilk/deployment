@@ -8,3 +8,11 @@
     command: collectstatic
     app_path: "{{ django_dir }}"
     virtualenv: "{{ virtualenv_path }}"
+
+- name: Create a media directory if one does not exist
+  file:
+    path: "{{ django_dir }}media"
+    state: directory
+    owner: "{{ custom_user }}"
+    group: www-data
+    mode: 0775
