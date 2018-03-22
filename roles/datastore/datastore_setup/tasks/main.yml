@@ -28,3 +28,6 @@
 - include_tasks: update_crawler.yml
   become: true
   become_user: "{{ custom_user }}"
+  
+- include_role:
+    name: common/postgres/postgres_backup_cron

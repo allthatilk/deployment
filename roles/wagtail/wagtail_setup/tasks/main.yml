@@ -20,3 +20,6 @@
 
 - include_role:
     name: common/apache2/apache2_restart
+    
+- include_role:
+    name: common/postgres/postgres_backup_cron
