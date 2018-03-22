@@ -21,5 +21,6 @@
     name: "Database backup"
     minute: "{{ backup_minute }}"
     hour: "{{ backup_hour }}"
+    weekday: "{{ backup_weekday }}"
     job: "/usr/local/bin/postgres_backup.sh"
     

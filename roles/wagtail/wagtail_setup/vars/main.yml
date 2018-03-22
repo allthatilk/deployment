@@ -55,3 +55,5 @@ backup_encryption_key: !vault |
 backup_minute: 0
 
 backup_hour: 0
+
+backup_weekday: "*"
