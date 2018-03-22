@@ -1,9 +1,0 @@
----
-- name: Set up cron job to create back-up dump of postgres database
-  become: true
-  become_user: "{{ db_user }}"
-  cron:
-    name: "Database backup"
-    minute: "0"
-    hour: "0"
-    job: "pg_dump {{ custom_database_name }} > {{ backup_directory }}/{{ database_dump_file }}"
