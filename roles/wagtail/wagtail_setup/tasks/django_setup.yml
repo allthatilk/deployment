@@ -11,7 +11,7 @@
 
 - name: Create a media directory if one does not exist
   file:
-    path: "{{ django_dir }}/media"
+    path: "{{ django_dir }}media"
     state: directory
     owner: "{{ custom_user }}"
     group: www-data
