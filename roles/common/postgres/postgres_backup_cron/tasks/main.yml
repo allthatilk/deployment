@@ -3,7 +3,7 @@
   file:
     path: "{{ backup_directory }}"
     state: directory
-    owner: "{{ custom_user }}"
+    owner: "{{ db_user }}"
     group: www-data
     mode: 0775
 
