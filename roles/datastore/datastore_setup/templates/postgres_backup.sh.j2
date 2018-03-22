@@ -1,6 +1,6 @@
 # Dump the postgres database
 # Encrypt the dump with openssl
-pg_dump {{ custom_database_name }} | openssl enc -aes-256-cbc -pass pass:{{ backup_encryption_key }} -p -out {{ backup_directory }}backup.sql -base64
+pg_dump {{ custom_database_name }} > {{ backup_directory }}backup.sql
 
 # Compress the backup directory with gzip
 tar -czf {{ backup_temporary_location }}backup.tar.gzip {{ backup_directory }}

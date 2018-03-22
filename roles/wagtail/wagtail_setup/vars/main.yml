@@ -41,8 +41,6 @@ backup_directory: "/tmp/uncompressed_backup/"
 
 backup_temporary_location: "/tmp/"
 
-database_dump_file: "pg_dump"
-
 backup_encryption_key: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           38356530393531303039333534313733393964383036333835646530353731373366313631333637
