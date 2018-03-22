@@ -11,4 +11,4 @@
     name: "Zip backup"
     minute: "0"
     hour: "2"
-    job: "zip --password {{ backup_encryption_key }} -r {{ backup_temporary_location }}/`date +\%Y-\%m-\%d`.zip {{ backup_directory }}"
+    job: "zip --password {{ backup_encryption_key }} -r {{ backup_temporary_location }}/$(date +\%Y-\%m-\%d).zip {{ backup_directory }}"
