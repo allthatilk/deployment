@@ -9,6 +9,8 @@
 
 - include_tasks: copy_wsgi_file.yml
 
+# The Datastore original setup did not use a virtualenv and so this role has its own pip install to reflect that
+# We recommend using the common/pip_install where possible as using a virtualenv is Python best practice
 - include_role:
     name: datastore/pip_install
 
@@ -28,6 +30,6 @@
 - include_tasks: update_crawler.yml
   become: true
   become_user: "{{ custom_user }}"
-  
+
 - include_role:
     name: common/postgres/postgres_backup_cron

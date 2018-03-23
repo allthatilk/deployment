@@ -7,7 +7,7 @@
 - include_tasks: setup_local_settings.yml
 
 - include_role:
-    name: wagtail/pip_install
+    name: common/pip_install
 
 - include_tasks: django_postgres_setup.yml
   become: true
@@ -20,6 +20,6 @@
 
 - include_role:
     name: common/apache2/apache2_restart
-    
+
 - include_role:
     name: common/postgres/postgres_backup_cron
