@@ -24,4 +24,5 @@
 - include_role:
     name: common/postgres/postgres_backup_cron
     
-- include_tasks: install_s3cmd.yml
+- include_role:
+    name: common/s3

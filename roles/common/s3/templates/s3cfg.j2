@@ -1,0 +1,12 @@
+# Setup endpoint
+host_base = play.minio.io:9000
+host_bucket = play.minio.io:9000
+bucket_location = us-east-1
+use_https = True
+
+# Setup access keys
+access_key =  {{ s3_access_key }}
+secret_key = {{ s3_secret_key }}
+
+# Enable S3 v4 signature APIs
+signature_v2 = False
