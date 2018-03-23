@@ -5,7 +5,7 @@
      dest: "/usr/local/bin/postgres_recover_backup.sh"
      mode: 0775
      owner: "{{ db_user }}"
-     group: www-data
+     group: "{{ db_user }}"
      
 #- name: Run the recovery script
 #  become: true

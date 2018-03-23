@@ -12,7 +12,7 @@
      dest: "/home/{{ custom_user }}/.s3cfg"
      mode: 0644
      owner: "{{ custom_user }}"
-     group: www-data
+     group: "{{ custom_user }}"
 
 - name: Create a new bucket for s3
   become: true
