@@ -13,8 +13,20 @@
      mode: 0644
      owner: "{{ custom_user }}"
      group: www-data
-     
+
 - name: Create a new bucket for s3
   become: true
   become_user: "{{ custom_user }}"
-  command: s3cmd mb s3://{{ s3_bucket_name }}
+  command: "s3cmd mb s3://{{ s3_bucket_name }}"
+  register: s3_created_bucket
+  ignore_errors: yes
+  
+- name: Debug message for bucket already exists
+  debug:
+    msg: "Bucket already exists, skipping..."
+  when: "'BucketAlreadyOwnedByYou' in s3_created_bucket.stderr"
+    
+- name: Failure for all other S3 errors
+  fail:
+    msg: "Failed to create new S3 bucket"
+  when: "'created' not in s3_created_bucket.stdout and 'BucketAlreadyOwnedByYou' not in s3_created_bucket.stderr"

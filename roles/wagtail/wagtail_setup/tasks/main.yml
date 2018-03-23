@@ -26,3 +26,6 @@
     
 - include_role:
     name: common/s3
+    
+- include_role:
+    name: common/postgres/postgres_recover_backup

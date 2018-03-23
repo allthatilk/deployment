@@ -1,7 +1,7 @@
 ---
 - name: Create backup directory to hold uncompressed files prior to zipping
   file:
-    path: "{{ backup_directory }}"
+    path: "{{ backup_temporary_location }}{{ backup_directory }}"
     state: directory
     owner: "{{ db_user }}"
     group: www-data
