@@ -1,4 +1,7 @@
 #!/bin/bash
+# Change directory to temporary backup
+cd {{ backup_temporary_location }}
+
 # List files from the s3 storage bucket and store them as FILES
 FILELINE="$(s3cmd ls s3://{{ s3_bucket_name }} | tail -1)"
 
@@ -16,9 +19,6 @@ tar -xzf $FILENAME
 
 # Delete the original file
 rm $FILENAME
-
-# Move the media folder from the backup directory back to it's proper place
-rsync -a {{ backup_directory }}media/ {{ django_dir }}media/
 
 # Drop everything owned by iati-website from the database
 psql -U {{ db_user }} -d {{ custom_database_name }} -c 'DROP OWNED BY "{{ db_user }}" CASCADE;'
