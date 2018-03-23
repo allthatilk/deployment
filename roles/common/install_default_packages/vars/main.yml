@@ -1,4 +1,5 @@
 ---
+# It is expected that all IATI products will eventually require these packages as standard.
 required_packages:
   - git
   - python3-pip
