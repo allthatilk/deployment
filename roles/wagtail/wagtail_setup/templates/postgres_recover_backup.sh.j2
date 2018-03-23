@@ -17,11 +17,8 @@ tar -xzf $FILENAME
 # Delete the original file
 rm $FILENAME
 
-# Remove the original media folder
-rm -rf {{ django_dir }}media
-
 # Move the media folder from the backup directory back to it's proper place
-mv -f {{ backup_directory }}media {{ django_dir }}
+rsync -a {{ backup_directory }}media/ {{ django_dir }}media/
 
 # Drop everything owned by iati-website from the database
 psql -U {{ db_user }} -d {{ custom_database_name }} -c 'DROP OWNED BY "{{ db_user }}" CASCADE;'

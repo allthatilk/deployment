@@ -14,5 +14,5 @@
     path: "{{ django_dir }}media"
     state: directory
     owner: "{{ custom_user }}"
-    group: "{{ custom_user }}"
-    mode: 0775
+    group: www-data
+    mode: 0774
