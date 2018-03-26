@@ -1,10 +1,12 @@
 ---
-- django_manage:
+- name: Run migrate to update the database based on the app models
+  django_manage:
     command: migrate
     app_path: "{{ django_dir }}"
     virtualenv: "{{ virtualenv_path }}"
 
-- django_manage:
+- name: Gather all static files and place in single directory
+  django_manage:
     command: collectstatic
     app_path: "{{ django_dir }}"
     virtualenv: "{{ virtualenv_path }}"
