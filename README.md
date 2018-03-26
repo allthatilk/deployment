@@ -65,7 +65,7 @@ To use the `postgres_backup_cron` role in `common/postgres` you will need to do 
 To use the `postgres_setup_recovery` role in `common/postgres` you will need to do the following:
 
 - Create a template file named `postgres_recover_backup.sh.j2` in the `templates` directory of the role which includes `postgres_setup_recovery`.
-- Use this template to specify the backup recovery process for your project. For example, the IATI website project unpacks a gzipped file from S3, erases the current database, decrypts the `pg_dump`, runs the `pg_dump` back into `psql` to create the tables, and then copies the media folder back to it's appropriate location.
+- Use this template to specify the backup recovery process for your project. For example, the IATI website project unpacks a gzipped file from S3, erases the current database, decrypts the `pg_dump`, runs the `pg_dump` back into `psql` to create the tables, and then copies the media folder back to its appropriate location.
 - If you have used different variables from the `postgres_backup_cron` role, ensure they have been created and specified.
 - General note: Unlike the `postgres_backup_cron` role, the `postgres_setup_recovery` role does not automatically run the recovery. It only creates a script that will initiate the recovery at `/usr/local/bin/postgres_recover_backup.sh`. The role to initiate a recovery is `postgres_recover_backup`.
 - IATI website specific note: Due to some output from openssl, the current `postgres_recover_backup.sh` will throw an error about `salt`. This can be ignored, as `psql` will ignore the offending lines and initiate the rest of the database recreation.

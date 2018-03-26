@@ -1,5 +1,5 @@
 ---
-- name: Create the unprivilaged recover backup shell script from template
+- name: Create the recover backup shell script from template
   template: 
      src: postgres_recover_backup.sh.j2 
      dest: "/usr/local/bin/postgres_recover_backup.sh"
