@@ -3,7 +3,7 @@
 A repository for managing deployment processes. Single-purpose successor to https://github.com/IATI/IATI-Websites
 
 Current playbooks:
-  - configure.yml
+  - configure_ssh_keys.yml
       This playbook configures the public SSH keys for all IATI webservers
 
   - datastore_dev.yml
