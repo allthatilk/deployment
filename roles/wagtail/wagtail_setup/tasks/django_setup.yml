@@ -17,4 +17,20 @@
     state: directory
     owner: "{{ custom_user }}"
     group: www-data
-    mode: 0775
+    mode: 0774
+    
+- name: Create the images subdirectory if one does not exist
+  file:
+    path: "{{ django_dir }}media/images"
+    state: directory
+    owner: "{{ custom_user }}"
+    group: www-data
+    mode: 0774
+    
+- name: Create the original_images subdirectory if one does not exist
+  file:
+    path: "{{ django_dir }}media/original_images"
+    state: directory
+    owner: "{{ custom_user }}"
+    group: www-data
+    mode: 0774

@@ -1,11 +1,14 @@
 ---
+- name: Make db_user a member of the www-data group to allow for reading and writing of media folder
+  command: usermod -a -G www-data {{ db_user }}
+
 - name: Create backup directory to hold uncompressed files prior to zipping
   file:
-    path: "{{ backup_directory }}"
+    path: "{{ backup_temporary_location }}{{ backup_directory }}"
     state: directory
     owner: "{{ db_user }}"
     group: www-data
-    mode: 0775
+    mode: 0774
 
 - name: Create backup shell script from template
   template: 
@@ -13,7 +16,7 @@
      dest: "/usr/local/bin/postgres_backup.sh"
      mode: 0775
      owner: "{{ db_user }}"
-     group: www-data
+     group: "{{ db_user }}"
      
 - name: Set the backup shell script to run as a cronjob
   cron:

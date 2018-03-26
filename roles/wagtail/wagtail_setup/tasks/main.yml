@@ -30,3 +30,11 @@
 # See the README for further information on how this works
 - include_role:
     name: common/postgres/postgres_backup_cron
+    
+# The role that installs S3 and creates a default object storage bucket
+- include_role:
+    name: common/s3
+    
+# The role that writes the postgres_recover_backup.sh from template. See README for more details.
+- include_role:
+    name: common/postgres/postgres_setup_recovery
