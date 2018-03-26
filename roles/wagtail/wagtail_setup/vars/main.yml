@@ -31,6 +31,9 @@ apache2_directories:
   - alias_source: /static
     alias_destination: /home/iati-website/preview-site/iati/staticfiles
     root: /home/iati-website/preview-site/iati/staticfiles
+  - alias_source: /media
+    alias_destination: /home/iati-website/preview-site/iati/media
+    root: /home/iati-website/preview-site/iati/media
   - root: /home/iati-website/preview-site/iati/iati
     file_location: wsgi.py
 
