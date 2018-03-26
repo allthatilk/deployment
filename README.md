@@ -55,11 +55,19 @@ ansible-playbook configure.yml -i servers.ini
 
 We created this backup structure upon recognising that backup needs vary depending on project requirements. We wanted a reusable yet customisable solution and so created this process.
 
-To use the `postgres_backup_cron` role in `common` you will need to do the following:
+To use the `postgres_backup_cron` role in `common/postgres` you will need to do the following:
 
 - Create a template file named `postgres_backup.sh.j2` in the `templates` directory of the role which includes `postgres_backup_cron`.
 - Use this template to specify the specific backup requirements for your project. For example, the IATI website project needs to package media files with its encrypted `pg_dump`, whereas backing up the Datastore does not require this.
 - Ensure you have created and specified the values of your `cron` scheduling variables.
 - Ensure you have created and specified the values of any other variables you have used in your `postgres_backup.sh.j2` template.
 
-We strongly recommend that you do yourself and others a favour by providing clear and thorough comments throughout your `postgres_backup.sh.j2` template that fully explains what the code is doing. We hope our own templates provide good examples of this.
+To use the `postgres_recover_backup` role in `common/postgres` you will need to do the following:
+
+- Create a template file named `postgres_recover_backup.sh.j2` in the `templates` directory of the role which includes `postgres_recover_backup`.
+- Use this template to specify the backup recovery process for your project. For example, the IATI website project unpacks a gzipped file from S3, erases the current database, decrypts the `pg_dump`, runs the `pg_dump` back into `psql` to create the tables, and then copies the media folder back to it's appropriate location.
+- If you have used different variables from the `postgres_backup_cron` role, ensure they have been created and specified.
+- General note: Unlike the `postgres_backup_cron` role, the `postgres_recover_backup` role does not automatically run the recovery. It only creates a script that will initiate the recovery at `/usr/local/bin/postgres_recover_backup.sh`
+- IATI website specific note: Due to some output from openssl, the current `postgres_recover_backup.sh` will throw an error about `salt`. This can be ignored, as `psql` will ignore the offending lines and initiate the rest of the database recreation.
+
+We strongly recommend that you do yourself and others a favour by providing clear and thorough comments throughout your `postgres_backup.sh.j2` and `postgres_recover_backup.sh.j2` templates that fully explain what the code is doing. We hope our own templates provide good examples of this.
