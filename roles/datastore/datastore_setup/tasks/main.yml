@@ -11,8 +11,8 @@
 
 - include_tasks: copy_wsgi_file.yml
 
-# pip2 install from the requirements.txt file of the cloned git repository
-# Because this is the only python2 product currently deployed via Ansible it has its own pip_install role
+# The Datastore original setup did not use a virtualenv and so this role has its own pip install to reflect that
+# We recommend using the common/pip_install where possible as using a virtualenv is Python best practice
 - include_role:
     name: datastore/pip_install
 
