@@ -7,20 +7,7 @@
      owner: "{{ db_user }}"
      group: "{{ db_user }}"
      
-- name: Create the privilaged recover backup shell script from template
-  template: 
-     src: postgres_recover_backup_priv.sh.j2 
-     dest: "/usr/local/bin/postgres_recover_backup_priv.sh"
-     mode: 0775
-     owner: "root"
-     group: "root"
-     
 #- name: Run the recovery script
 #  become: true
 #  become_user: {{ db_user }}
 #  command: /usr/local/bin/postgres_recover_backup.sh
-
-#- name: Run the privilaged recovery script
-#  become: true
-#  become_user: root
-#  command: /usr/local/bin/postgres_recover_backup_priv.sh

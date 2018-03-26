@@ -1,4 +1,7 @@
 ---
+- name: Make db_user a member of the www-data group to allow for reading and writing of media folder
+  command: usermod -a -G www-data {{ db_user }}
+
 - name: Create backup directory to hold uncompressed files prior to zipping
   file:
     path: "{{ backup_temporary_location }}{{ backup_directory }}"

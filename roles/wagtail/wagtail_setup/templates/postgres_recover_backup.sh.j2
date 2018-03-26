@@ -25,3 +25,12 @@ psql -U {{ db_user }} -d {{ custom_database_name }} -c 'DROP OWNED BY "{{ db_use
 
 # Decrypt the pg_dump backup and load it into postgres
 openssl enc -d -aes-256-cbc -pass pass:{{ backup_encryption_key }} -p -in {{ backup_directory }}backup.sql -base64 | psql -d {{ custom_database_name }}
+
+# Remove the original media folder
+rm -rf {{ django_dir }}media
+
+# Move the media folder from the backup directory back to it's proper place
+cp -r {{ backup_directory }}media {{ django_dir }}
+
+# Let www-data group re-own the media folder recursively
+chgrp -R www-data {{ django_dir }}media
