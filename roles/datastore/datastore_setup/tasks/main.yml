@@ -1,7 +1,9 @@
 ---
+# Apt-get install packages for the datastore
 - include_role:
     name: common/install_dependencies
 
+# Clone the datastore git repository as the datastore user
 - include_role:
     name: common/clone_repo
   become: true
@@ -14,6 +16,7 @@
 - include_role:
     name: datastore/pip_install
 
+# Setup the datastore on the server as the datastore user
 - include_tasks: setup_datastore.yml
   become: true
   become_user: "{{ custom_user }}"
@@ -27,9 +30,12 @@
 - include_role:
     name: common/apache2/apache2_restart
 
+# Update the datastore crawler as the datastore user
 - include_tasks: update_crawler.yml
   become: true
   become_user: "{{ custom_user }}"
 
+# Backup the postgres database of the datastore once a week in a tmp directory on the server
+# There are currently no plans to store the backup file elsewhere
 - include_role:
     name: common/postgres/postgres_backup_cron
