@@ -5,7 +5,7 @@
   become: true
   become_user: "{{ custom_user }}"
 
-# Copy the locay.py file to the remote server for Django settings
+# Copy the local.py file to the remote server for Django settings
 - include_tasks: setup_local_settings.yml
 
 # Install packages specified in the requirements.txt file to the virtualenv
