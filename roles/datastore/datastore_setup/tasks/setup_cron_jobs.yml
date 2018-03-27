@@ -1,5 +1,6 @@
 ---
 # iati queue background (worker) requires this environment variable to run
+# This allows cron to use the executable path of the custom user
 - cron:
     name: PATH
     env: yes

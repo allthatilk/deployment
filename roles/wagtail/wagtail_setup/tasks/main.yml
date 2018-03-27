@@ -26,6 +26,14 @@
 - include_role:
     name: common/apache2/apache2_restart
 
+# Ensure the db user cron can access the custom user path (to run the postgres_backup_cron)
+# If multiple services require this in the future (just wagtail and datastore for now), extract it as a role
+- cron:
+    name: PATH
+    env: yes
+    user: "{{ db_user }}"
+    value: /usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+    
 # Create the cron job that regularly backs up the postgres database
 # See the README for further information on how this works
 - include_role:
