@@ -39,11 +39,11 @@ apache2_directories:
     
 apache2_errordocs:
   - error_code: 403
-    error_template: /500.html
+    error_template: /500
   - error_code: 404
-    error_template: /500.html
+    error_template: /500
   - error_code: 500
-    error_template: /500.html
+    error_template: /500
 
 apache2_extras:
   - line: WSGIDaemonProcess iati python-path=/home/iati-website/preview-site/iati python-home=/home/iati-website/preview-site/pyenv
