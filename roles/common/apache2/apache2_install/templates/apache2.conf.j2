@@ -5,6 +5,13 @@
   DocumentRoot {{ apache2_documentroot }}
   {% endif %}
 
+  {% if apache2_errordocs is defined %}
+    {% for doc in apache2_errordocs %}
+      ErrorDocument {{ doc.error_code }} {{ doc.error_template }}
+    {% endfor %}
+  {% endif %}
+    
+
   ErrorLog ${APACHE_LOG_DIR}/error.log
   CustomLog ${APACHE_LOG_DIR}/access.log combined
   
