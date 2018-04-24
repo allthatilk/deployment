@@ -11,12 +11,6 @@
     app_path: "{{ django_dir }}"
     virtualenv: "{{ virtualenv_path }}"
 
-- name: Run createdefaultpages to create the default pages for the site
-  django_manage:
-    command: createdefaultpages
-    app_path: "{{ django_dir }}"
-    virtualenv: "{{ virtualenv_path }}"
-
 - name: Gather all static files and place in single directory
   django_manage:
     command: collectstatic
