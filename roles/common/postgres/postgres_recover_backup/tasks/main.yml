@@ -1,0 +1,5 @@
+---
+- name: Run the recovery script
+  become: true
+  become_user: {{ db_user }}
+  command: /usr/local/bin/postgres_recover_backup.sh

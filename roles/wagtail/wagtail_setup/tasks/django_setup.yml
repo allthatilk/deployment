@@ -1,0 +1,36 @@
+---
+- name: Run migrate to update the database based on the app models
+  django_manage:
+    command: migrate
+    app_path: "{{ django_dir }}"
+    virtualenv: "{{ virtualenv_path }}"
+
+- name: Gather all static files and place in single directory
+  django_manage:
+    command: collectstatic
+    app_path: "{{ django_dir }}"
+    virtualenv: "{{ virtualenv_path }}"
+
+- name: Create a media directory if one does not exist
+  file:
+    path: "{{ django_dir }}media"
+    state: directory
+    owner: "{{ custom_user }}"
+    group: www-data
+    mode: 0774
+    
+- name: Create the images subdirectory if one does not exist
+  file:
+    path: "{{ django_dir }}media/images"
+    state: directory
+    owner: "{{ custom_user }}"
+    group: www-data
+    mode: 0774
+    
+- name: Create the original_images subdirectory if one does not exist
+  file:
+    path: "{{ django_dir }}media/original_images"
+    state: directory
+    owner: "{{ custom_user }}"
+    group: www-data
+    mode: 0774
