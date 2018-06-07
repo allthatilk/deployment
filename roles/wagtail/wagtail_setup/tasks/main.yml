@@ -5,6 +5,15 @@
   become: true
   become_user: "{{ custom_user }}"
 
+# Let custom_user recursively own the new repository
+- name: Let custom user own new repo recursively
+  file:
+    path: "{{ user_home_dir }}{{repo_dir}}"
+    group: www-data
+    owner: "{{ custom_user }}"
+    mode: 0774
+    recurse: yes
+
 # Copy the local.py file to the remote server for Django settings
 - include_tasks: setup_local_settings.yml
 
