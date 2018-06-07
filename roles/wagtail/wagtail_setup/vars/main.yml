@@ -43,11 +43,7 @@ apache2_directories:
   - root: /home/iati-website/preview-site/iati/iati/templates/
     file_location: 404-static.html
     alias_source: /404
-<<<<<<< HEAD
-    alias_destination: /home/iati-website/preview-site/iati/iati/templates/404.html
-=======
     alias_destination: /home/iati-website/preview-site/iati/iati/templates/404-static.html
->>>>>>> wagtail-alpha
 
 apache2_errordocs:
   - error_code: 403
