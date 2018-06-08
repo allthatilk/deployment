@@ -46,3 +46,20 @@
     owner: "{{ custom_user }}"
     group: www-data
     mode: 0774
+
+- name: Create periodic update schell script from tmeplate
+  template:
+     src: periodic_updates.sh.j2
+     dest: "/usr/local/bin/periodic_updates.sh"
+     mode: 0775
+     owner: "{{ custom_user }}"
+     group: "{{ custom_user }}"
+
+- name: Set the periodic update shell script to run as a cronjob
+  cron:
+    user: "{{ custom_user }}"
+    name: "Periodic django update"
+    minute: "{{ update_minute }}"
+    hour: "{{ update_hour }}"
+    weekday: "{{ update_weekday }}"
+    job: "/usr/local/bin/periodic_updates.sh"
