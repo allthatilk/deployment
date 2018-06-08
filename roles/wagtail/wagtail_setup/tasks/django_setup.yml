@@ -17,7 +17,7 @@
     app_path: "{{ django_dir }}"
     virtualenv: "{{ virtualenv_path }}"
 
-- name: Create default packages
+- name: Create default pages
   django_manage:
     command: createdefaultpages
     app_path: "{{ django_dir }}"
