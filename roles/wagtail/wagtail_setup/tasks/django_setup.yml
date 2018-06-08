@@ -47,7 +47,7 @@
     group: www-data
     mode: 0774
 
-- name: Create periodic update schell script from tmeplate
+- name: Create periodic update schell script from template
   template:
      src: periodic_updates.sh.j2
      dest: "/usr/local/bin/periodic_updates.sh"
