@@ -1,7 +1,7 @@
 ---
 git_clone_address: https://github.com/IATI/preview-website.git
 
-git_clone_branch: setup-wagtail
+git_clone_branch: add-page-models
 
 user_home_dir: /home/{{ custom_user }}/
 
@@ -37,14 +37,14 @@ apache2_directories:
   - root: /home/iati-website/preview-site/iati/iati
     file_location: wsgi.py
   - root: /home/iati-website/preview-site/iati/iati/templates/
-    file_location: 500.html
+    file_location: 500-static.html
     alias_source: /500
-    alias_destination: /home/iati-website/preview-site/iati/iati/templates/500.html
+    alias_destination: /home/iati-website/preview-site/iati/iati/templates/500-static.html
   - root: /home/iati-website/preview-site/iati/iati/templates/
-    file_location: 404.html
+    file_location: 404-static.html
     alias_source: /404
-    alias_destination: /home/iati-website/preview-site/iati/iati/templates/404.html
-    
+    alias_destination: /home/iati-website/preview-site/iati/iati/templates/404-static.html
+
 apache2_errordocs:
   - error_code: 403
     error_template: /404
@@ -77,12 +77,19 @@ backup_hour: 0
 
 backup_weekday: "*"
 
-s3_access_key: "Q3AM3UQ867SPQQA43P2F"
+s3_access_key: "AKIAJCU4SI2QITCUF5LQ"
 
-s3_secret_key: "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"
+s3_secret_key: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          38376364333436323936383937646263323438643830303862356534386635666432366536366163
+          3930623231346335376263643037326131653035653565380a653935346233323530663935633561
+          66613963363633623437376465303330623736363438303530366436373830333165303236363439
+          3635303538323931660a656364653665653762353463653433656166373635393633663163636231
+          64653834373333393630663331366466656131366665663135626137333161623033383238313630
+          3331653565333664626366353331313065343032336632613164
 
-s3_bucket_name: iatibucket
+s3_bucket_name: "iatibucket"
 
-s3_bucket_host: "play.minio.io:9000"
+s3_bucket_host: "s3.amazonaws.com"
 
-s3_bucket_region: "us-east-1"
+s3_bucket_region: "ca-central-1"
