@@ -21,8 +21,8 @@ su {{ custom_user }} -c 'tar -xzf $FILENAME'
 rm $FILENAME
 
 # Drop and recreate the database with owner db_user
-psql -U postgres -d {{ custom_database_name }} -c 'DROP DATABASE "{{ custom_database_name }}";'
-psql -U postgres -d {{ custom_database_name }} -c 'CREATE DATABASE "{{ custom_database_name }}" WITH OWNER "{{ db_user }}";'
+su postgres -c 'psql -U postgres -d postgres -c '"'"'DROP DATABASE "{{ custom_database_name }}";'"'"
+su postgres -c 'psql -U postgres -d postgres -c '"'"'CREATE DATABASE "{{ custom_database_name }}" WITH OWNER "{{ db_user }}";'"'"
 
 # Decrypt the pg_dump backup and load it into postgres
 su {{ custom_user }} -c 'openssl enc -d -aes-256-cbc -pass pass:{{ backup_encryption_key }} -p -in {{ backup_directory }}backup.sql -base64 | psql -d {{ custom_database_name }}'
