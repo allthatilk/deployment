@@ -12,19 +12,20 @@ FILEPATH="$(cut -d' ' -f4 <<< $FILELINE)"
 FILENAME="$(cut -d'/' -f4 <<< $FILEPATH)"
 
 # Download the recovery tar file from s3 storage bucket
-s3cmd -c /home/{{ custom_user }}/.s3cfg --no-progress get $FILEPATH
+su {{ custom_user }} -c 's3cmd -c /home/{{ custom_user }}/.s3cfg --no-progress get $FILEPATH'
 
 # Unzip the downloaded file
-tar -xzf $FILENAME
+su {{ custom_user }} -c 'tar -xzf $FILENAME'
 
 # Delete the original file
 rm $FILENAME
 
-# Drop everything owned by iati-website from the database
-psql -U {{ db_user }} -d {{ custom_database_name }} -c 'DROP OWNED BY "{{ db_user }}" CASCADE;'
+# Drop and recreate the database with owner db_user
+su postgres -c 'psql -U postgres -d postgres -c '"'"'DROP DATABASE "{{ custom_database_name }}";'"'"
+su postgres -c 'psql -U postgres -d postgres -c '"'"'CREATE DATABASE "{{ custom_database_name }}" WITH OWNER "{{ db_user }}";'"'"
 
 # Decrypt the pg_dump backup and load it into postgres
-openssl enc -d -aes-256-cbc -pass pass:{{ backup_encryption_key }} -p -in {{ backup_directory }}backup.sql -base64 | psql -d {{ custom_database_name }}
+su {{ custom_user }} -c 'openssl enc -d -aes-256-cbc -pass pass:{{ backup_encryption_key }} -p -in {{ backup_directory }}backup.sql -base64 | psql -d {{ custom_database_name }}'
 
 # Remove the original media folder
 rm -rf {{ django_dir }}media
@@ -33,4 +34,4 @@ rm -rf {{ django_dir }}media
 cp -r {{ backup_directory }}media {{ django_dir }}
 
 # Let www-data group re-own the media folder recursively
-chgrp -R www-data {{ django_dir }}media
+chown -R www-data:www-data {{ django_dir }}media

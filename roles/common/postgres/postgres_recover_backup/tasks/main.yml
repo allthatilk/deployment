@@ -1,5 +1,13 @@
 ---
+- name: stop apache
+  service:
+    name: apache2
+    state: stopped
+
 - name: Run the recovery script
-  become: true
-  become_user: {{ db_user }}
   command: /usr/local/bin/postgres_recover_backup.sh
+
+- name: start apache
+  service:
+    name: apache2
+    state: started
