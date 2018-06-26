@@ -3,13 +3,13 @@
 A repository for managing deployment processes. Single-purpose successor to https://github.com/IATI/IATI-Websites
 
 Current playbooks:
-  - configure_ssh_keys.yml
+  - `configure_ssh_keys.yml`
       This playbook configures the public SSH keys for all IATI webservers
 
-  - datastore_dev.yml
+  - `datastore_dev.yml`
       This playbook deploys the dev Datastore with an updated Ubuntu OS and Apache configuration. Work is ongoing to push these improvements to production, but currently only dev and staging have these updates until we can migrate all products from the live Datastore server.
 
-  - wagtail.yml
+  - `wagtail.yml`
       This playbook deploys the new and improved IATI website. This project is currently in progress and so this playbook should not be considered stable.
 
 ### Set-up
