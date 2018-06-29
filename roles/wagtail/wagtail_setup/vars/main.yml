@@ -101,4 +101,4 @@ update_minute: 0
 
 update_hour: 0
 
-update_weekday: 0
+update_weekday: "*"
