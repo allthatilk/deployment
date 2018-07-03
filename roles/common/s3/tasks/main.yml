@@ -9,12 +9,8 @@
 - name: Create s3 config file from template
   template:
      src: s3cfg.j2
-     dest: "/home/{{ custom_user }}/.s3cfg"
+     dest: "/root/.s3cfg"
      mode: 0644
-     owner: "{{ custom_user }}"
-     group: "{{ custom_user }}"
 
 - name: Test connection to custom bucket
-  become: true
-  become_user: "{{ custom_user }}"
   command: "s3cmd --configure s3://{{ s3_bucket_name }}"
