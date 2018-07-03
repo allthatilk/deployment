@@ -12,7 +12,7 @@ FILEPATH="$(cut -d' ' -f4 <<< $FILELINE)"
 FILENAME="$(cut -d'/' -f4 <<< $FILEPATH)"
 
 # Download the recovery tar file from s3 storage bucket
-s3cmd -c --no-progress get $FILEPATH
+s3cmd -c /root/.s3cfg --no-progress get $FILEPATH
 
 # Unzip the downloaded file
 tar -xzf $FILENAME
