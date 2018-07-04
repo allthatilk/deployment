@@ -15,10 +15,10 @@ Ask @allthatilk or @dalepotter for the Ansible vault password.
 
 ## Expected deployments
 
-- Staging: _[URL to be made public in July 2018 - Ask @k8hughes @dalepotter or @allthatilk for the URL]_
+- Staging: `http://staging2.iatistandard.org/`
 This is deployed from the `git_clone_branch` defined in the [project vars file]( https://github.com/IATI/deployment/blob/dev/roles/wagtail/wagtail_setup/vars/main.yml).
 
-- Production: _[Permanent URL to be made public in July 2018]_
+- Production: `http://iatistandard.org/`
 This is to be deployed from a branch (TBC).
 
 The DNS A records for these (sub)domains are made in VPS.net DNS manager.
@@ -36,7 +36,7 @@ Login details for the AWS master account can be found in the IATI Asset Register
 
 ## Administration
 
-`/admin` can be added to the deployed URL to access the admin interface.
+`/cms` can be added to the deployed URL to access the admin interface.
 
 Amongst some others, @dalepotter @akmiller01 and @allthatilk are each set up with admin accounts with add/remove user privileges.
 
