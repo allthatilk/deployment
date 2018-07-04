@@ -27,7 +27,7 @@
   file:
     path: "{{ django_dir }}media"
     state: directory
-    owner: "{{ custom_user }}"
+    owner: www-data
     group: www-data
     mode: 0774
 
@@ -35,7 +35,7 @@
   file:
     path: "{{ django_dir }}media/images"
     state: directory
-    owner: "{{ custom_user }}"
+    owner: www-data
     group: www-data
     mode: 0774
 
@@ -43,7 +43,15 @@
   file:
     path: "{{ django_dir }}media/original_images"
     state: directory
-    owner: "{{ custom_user }}"
+    owner: www-data
+    group: www-data
+    mode: 0774
+
+- name: Create the documents subdirectory if one does not exist
+  file:
+    path: "{{ django_dir }}media/documents"
+    state: directory
+    owner: www-data
     group: www-data
     mode: 0774
 
