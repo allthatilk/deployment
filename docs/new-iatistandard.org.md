@@ -5,23 +5,28 @@
 https://github.com/IATI/preview-website
 
 
-## Deployment
+## Deployment process
 
-The site is deployed to a Digital Ocean server using Ansible:
+The site is deployed to a VPS using Ansible:
 `ansible-playbook wagtail.yml -i servers.ini --ask-vault-pass`
 
 Ask @allthatilk or @dalepotter for the Ansible vault password.
 
 
+## Deployment service
+
+Single-purpose VPS server, provided by Digital Ocean.
+
+@allthatilk @dalepotter and @k8hughes are owners of the IATI Team account on Digital Ocean, with add/remove user privileges.
+
+
 ## Expected deployments
 
-- Staging: `http://staging2.iatistandard.org/`
-This is deployed from the `git_clone_branch` defined in the [project vars file]( https://github.com/IATI/deployment/blob/dev/roles/wagtail/wagtail_setup/vars/main.yml).
-
 - Production: `http://iatistandard.org/`
-This is to be deployed from a branch (TBC).
+This is deployed from the `git_clone_branch` defined in the [project vars file]( https://github.com/IATI/deployment/blob/dev/roles/wagtail/wagtail_setup/vars/main.yml).
+- Staging: This is set up ad hoc with access using the server IP address only (i.e. we do not use a domain)
 
-The DNS A records for these (sub)domains are made in VPS.net DNS manager.
+The DNS A record for this domain is made in VPS.net DNS manager.
 
 
 ## Associated services
@@ -31,7 +36,6 @@ The DNS A records for these (sub)domains are made in VPS.net DNS manager.
 Amazon S3 provides storage for Database backups, which are stored with Amazon Web Services under the bucket name defined in the [project vars file]( https://github.com/IATI/deployment/blob/dev/roles/wagtail/wagtail_setup/vars/main.yml).
 
 Login details for the AWS master account can be found in the IATI Asset Register.
-
 
 
 ## Administration
