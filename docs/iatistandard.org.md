@@ -1,4 +1,4 @@
-# IATI Website
+# IATI Standard Website
 
 ## Project repository
 
