@@ -1,7 +1,7 @@
 ---
 git_clone_address: https://github.com/IATI/preview-website.git
 
-git_clone_branch: add-page-models
+git_clone_branch: master
 
 user_home_dir: /home/{{ custom_user }}/
 
