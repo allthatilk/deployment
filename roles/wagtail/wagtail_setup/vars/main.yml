@@ -23,9 +23,23 @@ db_password: !vault |
           36666631323937653638646664326564343236376335336336653933353662653334633633333833
           396436656434313062336239396536373064
 
+ssl_cert_path: /etc/ssl/private/iatistandard.org.crt
+
+ssl_key_path: /etc/ssl/private/iatistandard.org.pem
+
+ssl_sign_request_path: /etc/ssl/csr/iatistandard.org.csr
+
 apache2_ip: '*'
 
-apache2_port: 80
+apache2_port: 443
+
+apache2_ssl_cert_files:
+  - type: SSLCertificateFile
+    path: "{{ ssl_cert_path }}"
+  - type: SSLCertificateKeyFile
+    path: "{{ ssl_key_path }}"
+  - type: SSLCertificateChainFile
+    path: "{{ ssl_sign_request_path }}"
 
 apache2_documentroot: /var/www/html/
 

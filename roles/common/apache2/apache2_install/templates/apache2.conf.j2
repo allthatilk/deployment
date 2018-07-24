@@ -1,6 +1,13 @@
 <VirtualHost {{ apache2_ip }}:{{ apache2_port }}>
   ServerAdmin webmaster@localhost
-  
+
+  {% if apache2_ssl_cert_files is defined %}
+  SSLEngine on
+    {% for file in apache2_ssl_cert_files %}
+      {{ file.type }} {{file.path}}
+    {% endfor %}
+  {% endif %}
+
   {% if apache2_documentroot is defined %}
   DocumentRoot {{ apache2_documentroot }}
   {% endif %}
@@ -10,11 +17,11 @@
       ErrorDocument {{ doc.error_code }} {{ doc.error_template }}
     {% endfor %}
   {% endif %}
-    
+
 
   ErrorLog ${APACHE_LOG_DIR}/error.log
   CustomLog ${APACHE_LOG_DIR}/access.log combined
-  
+
   # Loops through each directory object in the apache2_directories list
   # For every directory object, write Alias if it is defined
   # Likewise, if file_location is specified a nested <Files> tag is included inside of the directory
