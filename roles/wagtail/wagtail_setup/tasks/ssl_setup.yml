@@ -1,8 +1,10 @@
+---
+- include_role:
+    name: common/openssl_install
+
 - name: Install pyOpenSSL
   pip:
     name: pyOpenSSL
-    version: 18.0.0
-    virtualenv: "{{ virtualenv_path }}"
 
 - name: Generate a self signed OpenSSL certificate
   openssl_certificate:
