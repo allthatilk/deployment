@@ -23,6 +23,10 @@ db_password: !vault |
           36666631323937653638646664326564343236376335336336653933353662653334633633333833
           396436656434313062336239396536373064
 
+ssl_cert_dir: /etc/ssl/private
+
+ssl_sign_dir: /etc/ssl/csr
+
 ssl_cert_path: /etc/ssl/private/iatistandard.org.crt
 
 ssl_key_path: /etc/ssl/private/iatistandard.org.pem
