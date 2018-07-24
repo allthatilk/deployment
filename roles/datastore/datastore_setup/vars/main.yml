@@ -32,7 +32,7 @@ apache2_extras:
   - line: WSGIProcessGroup datastore
   - line: WSGIScriptAlias / /home/datastore/datastore.wsgi
   - line: Header set Access-Control-Allow-Origin "*"
-  
+
 backup_directory: "/tmp/uncompressed_backup/"
 
 backup_temporary_location: "/tmp/"
