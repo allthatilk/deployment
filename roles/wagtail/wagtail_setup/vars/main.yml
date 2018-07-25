@@ -79,24 +79,21 @@ apache2_extras:
   - line: WSGIScriptAlias / /home/iati-website/preview-site/iati/iati/wsgi.py
 
 apache2_additional_vhosts:
-  - vhost:
-    - ip: '*'
-    - port: 80
-    - contents:
-      - line: ServerName www.iatistandard.org
-      - line: Redirect permanent / https://www.iatistandard.org/
-  - vhost:
-    - ip: '*'
-    - port: 80
-    - contents:
-      - line: ServerName iatistandard.org
-      - line: Redirect permanent / https://iatistandard.org/
-  - vhost:
-    - ip: '*'
-    - port: 80
-    - contents:
-      - line: ServerName stagingtest.iatistandard.org
-      - line: Redirect permanent / https://stagingtest.iatistandard.org/
+  - ip: '*'
+    port: 80
+    contents:
+    - line: ServerName www.iatistandard.org
+    - line: Redirect permanent / https://www.iatistandard.org/
+  - ip: '*'
+    port: 80
+    contents:
+    - line: ServerName iatistandard.org
+    - line: Redirect permanent / https://iatistandard.org/
+  - ip: '*'
+    port: 80
+    contents:
+    - line: ServerName stagingtest.iatistandard.org
+    - line: Redirect permanent / https://stagingtest.iatistandard.org/
 
 backup_directory: "uncompressed_backup/"
 
