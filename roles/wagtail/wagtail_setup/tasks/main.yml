@@ -37,8 +37,8 @@
 
 # Create the cron job that regularly backs up the postgres database
 # See the README for further information on how this works
-# - include_role:
-#     name: common/postgres/postgres_backup_cron
+- include_role:
+    name: common/postgres/postgres_backup_cron
 
 # The role that installs S3 and creates a default object storage bucket
 - include_role:

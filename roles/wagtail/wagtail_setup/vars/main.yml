@@ -89,11 +89,6 @@ apache2_additional_vhosts:
     contents:
     - line: ServerName iatistandard.org
     - line: Redirect permanent / https://iatistandard.org/
-  - ip: '*'
-    port: 80
-    contents:
-    - line: ServerName stagingtest.iatistandard.org
-    - line: Redirect permanent / https://stagingtest.iatistandard.org/
 
 backup_directory: "uncompressed_backup/"
 
