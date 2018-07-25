@@ -52,3 +52,13 @@
   {{ apache2_extra.line }}
   {% endfor %}
 </VirtualHost>
+
+{% if apache2_additional_vhosts %}
+  {% for additional_vhost in apache2_additional_vhosts %}
+  <VirtualHost {{ additional_vhost.vhost.ip }}:{{ additional_vhost.vhost.port }}>
+    {% for content in additional_vhost.vhost.contents %}
+    {{ content.line }}
+    {% endfor %}
+  </VirtualHost>
+  {% endfor %}
+{% endif %}

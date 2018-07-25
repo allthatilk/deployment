@@ -77,9 +77,26 @@ apache2_extras:
   - line: WSGIDaemonProcess iati python-path=/home/iati-website/preview-site/iati python-home=/home/iati-website/preview-site/pyenv
   - line: WSGIProcessGroup iati
   - line: WSGIScriptAlias / /home/iati-website/preview-site/iati/iati/wsgi.py
-  - line: RewriteEngine On
-  - line: RewriteCond %{HTTPS} !=on
-  - line: RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+
+apache2_additional_vhosts:
+  - vhost:
+    - ip: '*'
+    - port: 80
+    - contents:
+      - line: ServerName www.iatistandard.org
+      - line: Redirect permanent / https://www.iatistandard.org/
+  - vhost:
+    - ip: '*'
+    - port: 80
+    - contents:
+      - line: ServerName iatistandard.org
+      - line: Redirect permanent / https://iatistandard.org/
+  - vhost:
+    - ip: '*'
+    - port: 80
+    - contents:
+      - line: ServerName stagingtest.iatistandard.org
+      - line: Redirect permanent / https://stagingtest.iatistandard.org/
 
 backup_directory: "uncompressed_backup/"
 
