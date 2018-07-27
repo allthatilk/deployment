@@ -1,0 +1,16 @@
+---
+- hosts:
+  remote_user:
+  roles:
+    - common/install_default_packages
+    - common/python2
+    - common/clone_repo
+
+- name: Create initial empty directories for RR
+    file:
+      path: "{{repo_dir}}{{ item }}"
+      state: directory
+    with_items:
+      - urls
+      - data
+      - ckan

@@ -1,22 +1,13 @@
 ---
-- hosts: 
-  remote_user: 
-  roles:
+
     - common/install_default_packages
     - common/python2
     - common/clone_repo
     - common/pip_install
 
-  vars:
-    git_clone_address: https://github.com/IATI/IATI-Dashboard.git
-    git_clone_branch: master
-    user_home_dir: /home/{{ custom_user }}/
-    repo_dir: IATI-Dashboard/
-    requirements_path: "{{repo_dir}}"
-
 - name: Run easy_install
     command: easy_install -U distribute
-  
+
 - name: Setup config file
   # config.py file, set username and password
 

@@ -1,0 +1,12 @@
+---
+    required_packages:
+      - curl
+      - php-curl
+      - php-cli
+      - wget
+      - gist
+      - zip
+    git_clone_address: https://github.com/IATI/IATI-Registry-Refresher.git
+    git_clone_branch: master
+    user_home_dir: /home/{{ custom_user }}/
+    repo_dir: IATI-Registry-Refresher/
