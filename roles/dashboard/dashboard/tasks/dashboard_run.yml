@@ -1,5 +1,11 @@
 ---
-- name: Run through all the steps to update dashboard
+- name: Cron job to go through all the steps to update dashboard
+    cron:
+      name: "Dashboard update"
+      minute:
+      hour:
+      weekday:
+      job: "full-dashboard-run.sh"
   # First we run Registry Refresher
   # $ cd /home/dashboard/IATI-Registry-Refresher
   # $ ./git.sh > /home/dashboard/logs/$(date + \%Y\%m\%d)-rr.log 2>&1

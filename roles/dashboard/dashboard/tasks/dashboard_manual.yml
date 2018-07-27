@@ -1,0 +1,3 @@
+---
+- name: Run through all the steps to update dashboard
+    script: full-dashboard-run-manual.sh
