@@ -1,9 +1,12 @@
 ---
+include_role:
+  name: common/install_default_packages
 
-    - common/install_default_packages
-    - common/python2
-    - common/clone_repo
-    - common/pip_install
+include_role:
+  name: common/clone_repo
+
+include_role:
+  name: common/pip_install
 
 - name: Run easy_install
     command: easy_install -U distribute
