@@ -1,0 +1,24 @@
+---
+- hosts: 
+  remote_user: 
+  roles:
+    - common/install_default_packages
+    - common/python2
+    - common/clone_repo
+    - common/pip_install
+
+  vars:
+    git_clone_address: https://github.com/IATI/IATI-Stats.git
+    git_clone_branch: master
+    user_home_dir: /home/{{ custom_user }}/
+    repo_dir: IATI-Stats/
+    requirements_path: "{{repo_dir}}"
+
+- name: Get helper files
+  # $ cd helpers
+  # $ git clone https://github.com/IATI/IATI-Rulesets
+  # $ ln -s IATI-Rulesets/rulesets
+  # $ ./get_codelist_mapping.sh, get_codelists.sh, get_schemas.sh
+  # $ wget "http://dashboard.iatistandard.org/stats/ckan.json"
+  # $ wget "https://raw.githubusercontent.com/IATI/IATI-Dashboard/live/registry_id_relationships.csv"
+  # $ cd .. 

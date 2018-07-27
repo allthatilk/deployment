@@ -1,0 +1,29 @@
+---
+- hosts: 
+  remote_user: 
+  roles:
+    - common/install_default_packages
+    - common/python2
+    - common/clone_repo
+
+- vars:
+    required_packages:
+      - curl
+      - php-curl
+      - php-cli
+      - wget
+      - gist
+      - zip
+    git_clone_address: https://github.com/IATI/IATI-Registry-Refresher.git
+    git_clone_branch: master
+    user_home_dir: /home/{{ custom_user }}/
+    repo_dir: IATI-Registry-Refresher/
+
+- name: Create initial empty directories for RR
+    file: 
+      path: "{{repo_dir}}{{ item }}"
+      state: directory
+    with_items:
+      - urls
+      - data
+      - ckan
