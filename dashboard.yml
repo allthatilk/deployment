@@ -1,0 +1,7 @@
+---
+- hosts: new-dashboard-dev
+  remote_user: root
+  roles:
+    - common/python2
+    - common/install_default_packages
+    -
