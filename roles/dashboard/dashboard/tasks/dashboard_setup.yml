@@ -15,6 +15,3 @@
     file: logs
       path: "{{user_home_dir}}/logs"
       state: directory
-
-- name: Run everything
-    include_task: dashboard_run.yml

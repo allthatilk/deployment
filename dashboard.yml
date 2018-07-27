@@ -3,5 +3,9 @@
   remote_user: root
   roles:
     - common/python2
-    - common/install_default_packages
-    -
+    - dashboard/registry_refresher
+    - dashboard/stats
+    - dashboard/dashboard
+
+  vars:
+    custom_user: dashboard

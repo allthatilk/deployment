@@ -1,7 +1,4 @@
 ---
-- hosts:
-  remote_user:
-  roles:
     - common/install_default_packages
     - common/python2
     - common/clone_repo
