@@ -1,12 +1,9 @@
 ---
-include_role:
-  name: common/install_default_packages
+- include_role:
+    name: common/clone_repo
 
-include_role:
-  name: common/clone_repo
+- include_role:
+    name: common/pip_install
 
-include_role:
-  name: common/pip_install
-
-include_role:
-  name: dashboard/stats/helpers
+- include_role:
+    name: dashboard/stats/helpers

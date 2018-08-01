@@ -1,5 +1,5 @@
 ---
-- hosts: new-dashboard-dev
+- hosts: ansible-learning
   remote_user: root
   roles:
     - common/python2

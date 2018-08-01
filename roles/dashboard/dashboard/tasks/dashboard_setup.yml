@@ -1,20 +1,17 @@
 ---
-include_role:
-  name: common/install_default_packages
+- include_role:
+    name: common/clone_repo
 
-include_role:
-  name: common/clone_repo
-
-include_role:
-  name: common/pip_install
+- include_role:
+    name: common/pip_install
 
 - name: Run easy_install
-    command: easy_install -U distribute
+  command: easy_install -U distribute
 
 - name: Setup config file
   # config.py file, set username and password
 
 - name: Create logs directory
-    file: logs
-      path: "{{user_home_dir}}/logs"
-      state: directory
+  file: logs
+    path: "{{user_home_dir}}/logs"
+    state: directory
