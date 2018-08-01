@@ -8,3 +8,5 @@ user_home_dir: /home/{{ custom_user }}/
 repo_dir: IATI-Dashboard/
 
 requirements_path: "{{repo_dir}}"
+
+virtualenv_path: "{{ user_home_dir }}{{ repo_dir }}pyenv"

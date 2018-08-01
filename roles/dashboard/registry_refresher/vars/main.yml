@@ -1,5 +1,7 @@
 ---
 required_packages:
+  - git
+  - virtualenv
   - curl
   - php-curl
   - php-cli
