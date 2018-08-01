@@ -8,11 +8,5 @@ include_role:
 include_role:
   name: common/pip_install
 
-- name: Get helper files
-  # $ cd helpers
-  # $ git clone https://github.com/IATI/IATI-Rulesets
-  # $ ln -s IATI-Rulesets/rulesets
-  # $ ./get_codelist_mapping.sh, get_codelists.sh, get_schemas.sh
-  # $ wget "http://dashboard.iatistandard.org/stats/ckan.json"
-  # $ wget "https://raw.githubusercontent.com/IATI/IATI-Dashboard/live/registry_id_relationships.csv"
-  # $ cd ..
+include_role:
+  name: dashboard/stats/helpers

@@ -1,0 +1,12 @@
+---
+include_role:
+  name: common/clone_repo
+
+name: Create symlinks
+  command: ln -s IATI-Rulesets/rulesets
+
+name: Get ckan json file from dashboard.iatistandard
+  command: wget "http://dashboard.iatistandard.org/stats/ckan.json"
+
+name: Get Registry ID relationships csv file
+  command: wget "https://raw.githubusercontent.com/IATI/IATI-Dashboard/live/registry_id_relationships.csv"

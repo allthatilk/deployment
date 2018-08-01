@@ -1,5 +1,6 @@
-  git_clone_address: https://github.com/IATI/IATI-Stats.git
-  git_clone_branch: master
-  user_home_dir: /home/{{ custom_user }}/
-  repo_dir: IATI-Stats/
-  requirements_path: "{{repo_dir}}"
+---
+git_clone_address: https://github.com/IATI/IATI-Stats.git
+git_clone_branch: master
+user_home_dir: /home/{{ custom_user }}/
+repo_dir: IATI-Stats/
+requirements_path: "{{repo_dir}}"
