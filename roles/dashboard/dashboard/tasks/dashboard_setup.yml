@@ -8,10 +8,10 @@
 - name: Run easy_install
   command: easy_install -U distribute
 
-- name: Setup config file
-  # config.py file, set username and password
-
+# - name: Setup config file
+#   # config.py file, set username and password
 - name: Create logs directory
-  file: logs
-    path: "{{user_home_dir}}/logs"
+  file:
+    path: "{{ user_home_dir }}logs/"
     state: directory
+    mode: 0755
