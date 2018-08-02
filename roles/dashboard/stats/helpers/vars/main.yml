@@ -5,4 +5,4 @@ git_clone_branch: version-2.03
 
 user_home_dir: /home/{{ custom_user }}/
 
-repo_dir: IATI-Stats/helpers/rulesets
+repo_dir: IATI-Stats/IATI-Rulesets/
