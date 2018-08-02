@@ -1,8 +1,8 @@
 ---
-git_clone_address: https://github.com/IATI/IATI-Rulesets
+git_clone_address: https://github.com/IATI/IATI-Rulesets.git
 
-git_clone_branch: master
+git_clone_branch: version-2.03
 
 user_home_dir: /home/{{ custom_user }}/
 
-repo_dir: IATI-Stats/helpers/
+repo_dir: IATI-Stats/helpers/rulesets
