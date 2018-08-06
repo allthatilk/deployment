@@ -13,5 +13,15 @@
 - name: Create logs directory
   file:
     path: "{{ user_home_dir }}logs/"
+    owner: "{{ custom_user }}"
+    group: "{{ custom_user }}"
     state: directory
+    mode: 0755
+
+- name: Copy full-dashboard-run.sh
+  copy:
+    src: full-dashboard-run.sh
+    dest: "{{user_home_dir}}"
+    owner: "{{ custom_user }}"
+    group: "{{ custom_user }}"
     mode: 0755
