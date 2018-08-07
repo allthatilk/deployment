@@ -1,6 +1,8 @@
 ---
 - include_role:
     name: common/clone_repo
+  become: true
+  become_user: "{{ custom_user }}"
 
 - include_role:
     name: common/pip_install
@@ -25,3 +27,15 @@
     owner: "{{ custom_user }}"
     group: "{{ custom_user }}"
     mode: 0755
+
+- name: Grant permissions to dashboard username
+  file:
+    path: "{{ item }}"
+    owner: "{{ custom_user }}"
+    group: "{{ custom_user }}"
+    recurse: yes
+    mode: 0755
+  with_items:
+    - "{{ user_home_dir }}IATI-Dashboard"
+    - "{{ user_home_dir }}IATI-Stats"
+    - "{{ user_home_dir }}IATI-Registry-Refresher"

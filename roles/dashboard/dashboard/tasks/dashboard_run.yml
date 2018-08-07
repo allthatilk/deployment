@@ -5,6 +5,8 @@
 
     special_time: reboot
 
+    state: present
+
     user: "{{ custom_user }}"
 
     job: "{{user_home_dir}}full-dashboard-run.sh"

@@ -4,6 +4,8 @@
 
 - include_role:
     name: common/clone_repo
+  become: true
+  become_user: "{{ custom_user }}"
 
 - name: Create initial empty directories for RR
   file:

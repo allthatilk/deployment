@@ -1,21 +1,29 @@
 ---
 - include_role:
     name: common/clone_repo
+  become: true
+  become_user: "{{ custom_user }}"
 
 - name: Create symlinks
   file:
     src: "{{ user_home_dir }}{{ repo_dir }}rulesets"
     dest: "{{ user_home_dir }}{{ repo_dir }}helpers"
+    owner: "{{ custom_user }}"
+    group: "{{ custom_user }}"
     state: link
 
 - name: Get ckan json file from dashboard.iatistandard
   get_url:
     url: http://dashboard.iatistandard.org/stats/ckan.json
     dest: "{{ user_home_dir }}{{ stats_dir }}helpers"
+    owner: "{{ custom_user }}"
+    group: "{{ custom_user }}"
     mode: 0664
 
 - name: Get Registry ID relationships csv file
   get_url:
     url: https://raw.githubusercontent.com/IATI/IATI-Dashboard/live/registry_id_relationships.csv
     dest: "{{ user_home_dir }}{{ stats_dir }}helpers"
+    owner: "{{ custom_user }}"
+    group: "{{ custom_user }}"
     mode: 0664
