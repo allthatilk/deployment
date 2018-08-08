@@ -4,13 +4,23 @@
   become: true
   become_user: "{{ custom_user }}"
 
-- name: Create symlinks
+- name: Create symlink for rulesets
   file:
     src: "{{ user_home_dir }}{{ repo_dir }}rulesets"
-    dest: "{{ user_home_dir }}{{ repo_dir }}helpers"
+    dest: "{{ user_home_dir }}{{ stats_dir }}helpers/rulesets"
     owner: "{{ custom_user }}"
     group: "{{ custom_user }}"
     state: link
+    force: yes
+
+- name: Create symlink for ckan
+  file:
+    src: "{{ user_home_dir }}IATI-Registry-Refresher/ckan"
+    dest: "{{ user_home_dir }}{{ stats_dir }}helpers/ckan"
+    owner: "{{ custom_user }}"
+    group: "{{ custom_user }}"
+    state: link
+    force: yes
 
 - name: Get ckan json file from dashboard.iatistandard
   get_url:

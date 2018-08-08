@@ -11,4 +11,6 @@ requirements_path: "{{user_home_dir}}{{repo_dir}}"
 
 requirements_file: requirements.txt
 
+changed_directory: "{{ requirements_path }}"
+
 virtualenv_path: "{{ user_home_dir }}{{ repo_dir }}pyenv"

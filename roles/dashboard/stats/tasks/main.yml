@@ -8,4 +8,8 @@
     name: common/pip_install
 
 - include_role:
+    name: common/change_ownership
+
+- include_role:
     name: dashboard/stats/helpers
+

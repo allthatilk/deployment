@@ -1,40 +1,12 @@
 ---
-- hosts: ansible-learning
+- hosts: new-dashboard-dev
   # This is needed with the default interpreter is python2 being installed on Ubuntu 16.04 or above
   gather_facts: False
   remote_user: root
   roles:
     - common/python2
     - common/create_user
-    - common/apache2/apache2_install
-    - dashboard/registry_refresher
-    - dashboard/stats
-    - dashboard/dashboard
+    - dashboard
 
   vars:
     custom_user: dashboard
-
-    apache2_ip: '*'
-
-    apache2_port: 80
-
-    apache2_documentroot: /home/dashboard/IATI-Dashboard/web
-
-    apache2_alias:
-      - line: /stats /home/dashboard/IATI-Stats/gitout
-      - line: /stats-blacklist /home/dashboard/IATI-Stats/stats-blacklist
-      - line: /zips /home/dashboard/IATI-Registry-Refresher/zips
-
-    apache2_dir_index: 
-      - line: index.html
-
-    apache2_directories:
-      - root: /home/dashboard/IATI-Registry-Refresher/zips/
-        options:
-        - line: Options Indexes FollowSymLinks 
-      - root: /home/dashboard/IATI-Dashboard/web/
-        options:
-        - line: Options Indexes FollowSymLinks 
-      - root: /home/dashboard/IATI-Stats/
-        options:
-        - line: Options Indexes FollowSymLinks 

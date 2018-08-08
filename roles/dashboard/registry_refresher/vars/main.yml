@@ -7,6 +7,8 @@ user_home_dir: /home/{{ custom_user }}/
 
 repo_dir: IATI-Registry-Refresher/
 
+changed_directory: "{{ user_home_dir }}{{ repo_dir }}"
+
 required_packages:
   - python-dev
   - git

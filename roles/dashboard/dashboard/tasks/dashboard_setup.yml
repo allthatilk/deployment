@@ -7,6 +7,9 @@
 - include_role:
     name: common/pip_install
 
+- include_role:
+    name: common/change_ownership
+
 - name: Run easy_install
   command: easy_install -U distribute
 
