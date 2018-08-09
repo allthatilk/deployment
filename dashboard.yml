@@ -1,5 +1,5 @@
 ---
-- hosts: new-dashboard-dev
+- hosts: ansible-learning
   # This is needed with the default interpreter is python2 being installed on Ubuntu 16.04 or above
   gather_facts: False
   remote_user: root

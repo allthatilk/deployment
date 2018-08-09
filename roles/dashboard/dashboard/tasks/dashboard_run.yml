@@ -1,16 +1,4 @@
 ---
-# - name: Cron job to go through all the steps to update dashboard
-#   cron:
-#     name: "Dashboard update (reboot)"
-
-#     special_time: reboot
-
-#     state: present
-
-#     user: "{{ custom_user }}"
-
-#     job: "{{user_home_dir}}full-dashboard-run.sh"
-
 - name: Cron job to go through all the steps to update dashboard (31 days)
   cron:
     name: "Dashboard update (31 days)"

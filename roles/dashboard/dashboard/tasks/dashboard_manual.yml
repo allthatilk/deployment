@@ -1,3 +1,12 @@
 ---
-- name: Run through all the steps to update dashboard
-  script: full-dashboard-run-manual.sh
+- name: Cron job to go through all the steps to update dashboard
+  cron:
+    name: "Dashboard update (manual)"
+
+    special_time: reboot
+
+    state: present
+
+    user: "{{ custom_user }}"
+
+    job: "{{user_home_dir}}full-dashboard-run-manual.sh"

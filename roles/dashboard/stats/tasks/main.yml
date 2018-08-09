@@ -13,3 +13,5 @@
 - include_role:
     name: dashboard/stats/helpers
 
+- include_role: 
+    name: common/symlink
