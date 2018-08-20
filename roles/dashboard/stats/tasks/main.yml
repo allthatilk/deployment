@@ -15,3 +15,6 @@
 
 - include_role: 
     name: common/symlink
+
+- name: Run get_stats.sh
+  script: get_stats.sh

@@ -1,6 +1,15 @@
 ---
-# Configure SSH keys for all hosts
-- hosts: all
+# # Configure SSH keys for hosts running on python2
+- hosts: python2-servers
+  vars:
+    # Override the default Python interpreter for Ansible to be Python2
+    ansible_python_interpreter: /usr/bin/python
   remote_user: root
   roles:
-     - common/configure_ssh_keys
+     - configure_ssh_keys
+
+# Configure SSH keys for hosts running on python3
+- hosts: python3-servers
+  remote_user: root
+  roles:
+    - configure_ssh_keys
