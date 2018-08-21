@@ -1,7 +1,7 @@
 ---
 git_clone_address: https://github.com/IATI/preview-website.git
 
-git_clone_branch: master
+git_clone_branch: dev
 
 user_home_dir: /home/{{ custom_user }}/
 

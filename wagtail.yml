@@ -1,11 +1,12 @@
 ---
-- hosts: iati-website-production
+- hosts: iati-website-dev
   remote_user: root
   roles:
     - common/install_default_packages
     - common/postgres/postgres_install
     - common/create_user
     - wagtail/wagtail_setup
+    - common/postgres/postgres_recover_backup
 
   vars:
     custom_user: iati-website
