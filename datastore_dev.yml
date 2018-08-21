@@ -1,5 +1,5 @@
 ---
-- hosts: ansible-learning
+- hosts: datastore-dev
   remote_user: root
   gather_facts: no
   roles:
